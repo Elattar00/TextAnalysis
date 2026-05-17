@@ -55,12 +55,7 @@
             background-size: 24px 24px;
         }
 
-        /* * PREMIUM DARK MODE ENHANCEMENTS
-         * Comprehensively targets surface elevations, text contrast, and border depths
-         * to completely eliminate eye strain while preserving all content and structure.
-         */
-        
-        /* 1. Global Backgrounds & Default Text */
+        /* * PREMIUM DARK MODE ENHANCEMENTS */
         html.dark body { 
             background-color: #020617 !important; 
             color: #cbd5e1 !important; 
@@ -76,7 +71,6 @@
             border-bottom: 1px solid rgba(30, 41, 59, 0.8) !important; 
         }
         
-        /* 2. Base Surface Colors */
         html.dark .bg-white { background-color: #0f172a !important; border-color: #1e293b !important; }
         html.dark .bg-slate-50, 
         html.dark .bg-slate-50\/50, 
@@ -87,7 +81,6 @@
         html.dark .bg-slate-700\/50 { background-color: #1e293b !important; border-color: #334155 !important; }
         html.dark .bg-white\/20 { background-color: rgba(255,255,255,0.1) !important; }
         
-        /* Fix interactive table row hovers in dark mode */
         html.dark .hover\:bg-slate-50:hover { background-color: #1e293b !important; }
         html.dark .hover\:border-emerald-200:hover { border-color: rgba(16, 185, 129, 0.5) !important; }
         html.dark .hover\:border-indigo-200:hover { border-color: rgba(99, 102, 241, 0.5) !important; }
@@ -95,7 +88,6 @@
         html.dark .hover\:border-amber-200:hover { border-color: rgba(245, 158, 11, 0.5) !important; }
         html.dark .hover\:border-slate-200:hover { border-color: #475569 !important; }
 
-        /* 3. Base Typography (guarantees readability across all unstyled elements) */
         html.dark .text-slate-900, html.dark .text-slate-800 { color: #f8fafc !important; }
         html.dark .text-slate-700 { color: #e2e8f0 !important; }
         html.dark .text-slate-600 { color: #cbd5e1 !important; }
@@ -103,7 +95,6 @@
         html.dark .text-slate-300 { color: #cbd5e1 !important; }
         html.dark .text-slate-200\/50 { color: rgba(148, 163, 184, 0.2) !important; } 
         
-        /* 4. Base Borders */
         html.dark .border-slate-100 { border-color: #1e293b !important; }
         html.dark .border-slate-200, 
         html.dark .border-slate-200\/60, 
@@ -113,7 +104,6 @@
         html.dark .border-l-4 { border-left-width: 4px !important; }
         html.dark .border-t-4 { border-top-width: 4px !important; }
         
-        /* 5. Theming: Muting the harsh pastels safely */
         html.dark .bg-emerald-50, html.dark .bg-emerald-50\/25, html.dark .bg-emerald-50\/50, html.dark .bg-emerald-100 { background-color: rgba(16, 185, 129, 0.1) !important; border-color: rgba(16, 185, 129, 0.2) !important; }
         html.dark .text-emerald-950, html.dark .text-emerald-900, html.dark .text-emerald-800 { color: #6ee7b7 !important; }
         html.dark .text-emerald-700 { color: #34d399 !important; }
@@ -138,18 +128,15 @@
         html.dark .border-amber-100, html.dark .border-amber-200, html.dark .border-amber-100\/30, html.dark .border-amber-100\/50 { border-color: rgba(245, 158, 11, 0.25) !important; }
         html.dark .border-amber-500, html.dark .border-amber-400\/60 { border-color: rgba(245, 158, 11, 0.4) !important; }
 
-        /* Secondary Text Accents */
         html.dark .text-sky-700 { color: #38bdf8 !important; }
         html.dark .text-purple-700 { color: #c084fc !important; }
         html.dark .text-blue-500 { color: #60a5fa !important; }
         
-        /* 6. Refined Shadows for Dark Mode Depth */
         html.dark .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.8) !important; }
         html.dark .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.8), 0 2px 4px -1px rgba(0, 0, 0, 0.6) !important; }
         html.dark .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.8), 0 4px 6px -2px rgba(0, 0, 0, 0.6) !important; }
         html.dark .shadow-inner { box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.8) !important; }
 
-        /* Smooth tab transitions */
         .fade-enter { opacity: 0; transform: translateY(10px); }
         .fade-enter-active { opacity: 1; transform: translateY(0); transition: opacity 400ms, transform 400ms; }
     </style>
@@ -168,6 +155,33 @@
         } from 'lucide-react';
 
         // --- UI Components ---
+
+        // UPDATED: Arabic Translation Wrapper Component (Interactive Dropdown)
+        const Ar = ({ title, children }) => {
+            const [isOpen, setIsOpen] = useState(false);
+            return (
+                <div dir="rtl" className="mt-4 border border-slate-200/80 dark:border-slate-700/80 rounded-xl overflow-hidden text-right transition-all shadow-sm">
+                    <button 
+                        onClick={(e) => { e.preventDefault(); e.stopPropagation(); setIsOpen(!isOpen); }}
+                        className="w-full flex items-center justify-between p-3 bg-slate-50/60 dark:bg-slate-800/40 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition-colors"
+                    >
+                        <div className="flex items-center gap-3">
+                            <span className="inline-block bg-slate-200/60 text-slate-600 dark:bg-slate-700/80 dark:text-slate-300 text-[10px] font-bold px-2 py-1 rounded border border-slate-300/50 dark:border-slate-600">شرح مبسط</span>
+                            {title && <span className="text-[13px] font-semibold text-slate-700 dark:text-slate-300">{title}</span>}
+                        </div>
+                        <svg className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                        {/* Changed to font-normal, increased line height, softened text color for eye comfort */}
+                        <div className="p-4 bg-white/40 dark:bg-slate-900/30 border-t border-slate-100 dark:border-slate-800 text-slate-600 dark:text-slate-400 text-[14.5px] leading-[1.8] font-normal font-sans">
+                            {children}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
 
         const Section = ({ title, subtitle, icon: Icon, children, color = "emerald" }) => {
             const styles = {
@@ -244,7 +258,7 @@
                     <div className={`w-12 h-12 rounded-full border-4 border-white shadow-sm flex items-center justify-center font-black shrink-0 relative z-10 ${numberColors[color] || numberColors.emerald}`}>
                         {act}
                     </div>
-                    <div className="pb-10 pt-2">
+                    <div className="pb-10 pt-2 w-full">
                         <h4 className="text-xl font-bold text-slate-900 mb-3">{title}</h4>
                         <div className="text-slate-600 leading-relaxed space-y-3 text-base">
                             {description}
@@ -297,7 +311,8 @@
                             <svg className="w-5 h-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                         </div>
                     </div>
-                    <div className={`transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[1000px] opacity-100 overflow-visible' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+                    {/* Increased max-h to 3000px to ensure the Arabic Dropdown fits when expanded inside the card */}
+                    <div className={`transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[3000px] opacity-100 overflow-visible' : 'max-h-0 opacity-0 overflow-hidden'}`}>
                         <div className="p-6 border-t border-slate-100 text-slate-600 text-base leading-relaxed space-y-3 bg-white rounded-b-2xl">
                             {details}
                         </div>
@@ -369,9 +384,7 @@
                             <Feather size={12}/> Exam Answer
                         </span>
                         <div className="text-slate-800 text-sm leading-relaxed font-normal space-y-3">
-                            {examParagraphs.map((para, idx) => (
-                                <p key={idx}>{para}</p>
-                            ))}
+                            {examParagraphs}
                         </div>
                     </div>
                 </div>
@@ -640,6 +653,7 @@
                                                 <p className="text-slate-600 text-sm leading-relaxed">
                                                     Norwegian playwright known as the <strong>"father of realism"</strong> and a founder of modernism. His works, including <em>A Doll's House</em> and <em>The Wild Duck</em>, are among the most frequently performed in the world.
                                                 </p>
+                                                <Ar>هنريك إبسن: كاتب مسرحي نرويجي يُلقب بـ "أبو الواقعية" وأحد مؤسسي الحداثة في الأدب. تعد أعماله مثل "بيت الدمية" و "البطة البرية" من أكثر المسرحيات عرضاً في العالم، حيث تسلط الضوء على تناقضات المجتمع والأمراض النفسية المختبئة خلف المظاهر.</Ar>
                                             </div>
                                         </div>
 
@@ -652,6 +666,7 @@
                                                         <p>During dinner, Hialmar Ekdal (who overheard father/son talking) notes Gregers shouldn't have invited him. Hialmar tells of his life after his father's disgrace. Surprisingly, Werle helped Hialmar start a photography studio and marry Gina (who coincidentally worked in Werle's house during Mrs. Werle's illness).</p>
                                                         <p>When Old Ekdal crosses the threshold, Werle gasps in disgust; Hialmar pretends to ignore his own father. A dejected Hialmar leaves.</p>
                                                         <p>Gregers accuses his father of passing the forestry scandal onto Old Ekdal and of an inappropriate past interest in Gina (revealed by Gregers' mother on her deathbed). Werle rebukes him and announces plans to marry Mrs. Sorby. Gregers leaves, announcing <Vocab word="enigmatically" simple="mysteriously" /> he finally sees his "mission in life."</p>
+                                                        <Ar>تبدأ المسرحية بحفل عشاء يقيمه رجل الأعمال الثري "هوكُن ويرلي" احتفالاً بعودة ابنه "جريجرز" بعد 15 عاماً من الغياب. خلال الحفل، يكتشف جريجرز أسراراً صادمة: والده هو السبب الخفي وراء سجن ودمار شريكه السابق "إكدال العجوز"، والأسوأ أنه زوّج خادمته السابقة "جينا" (بعد أن أقام معها علاقة) لصديق جريجرز القديم "هيلمار إكدال" للتغطية على فضيحته. يقرر جريجرز الغاضب ترك منزل أبيه ليكشف هذه الأكاذيب لصديقه، معتبراً أن إظهار الحقيقة هي "مهمته الكبرى في الحياة".</Ar>
                                                     </>
                                                 } />
 
@@ -660,6 +675,7 @@
                                                         <p>In Hialmar's studio, Hialmar declares his love for his family. Gregers arrives and chats with them. Hialmar reveals his daughter <strong>Hedvig</strong> is going blind.</p>
                                                         <p>Ekdal shows Gregers a deep garret in the back of the room filled with nooks, crannies, and a fowl in a basket—<strong>a wild duck</strong> belonging to Hedvig. Werle had wounded it on a hunting expedition, and the family won it.</p>
                                                         <p>Gregers insists on renting the Ekdals' spare room, stating he will be "like the wild duck himself."</p>
+                                                        <Ar>ننتقل إلى منزل "هيلمار" حيث يعيش حياة بسيطة ومستقرة ظاهرياً مع زوجته جينا وابنته "هيدفيج" المهددة بالعمى. يُطلعون جريجرز على مكان غريب في آخر المنزل "العلية"، حيث يحتفظون بـ "بطة برية" كان والد جريجرز قد أصابها برصاصة أثناء الصيد، لكنها نجت واحتفظت بها العائلة. البطة هنا ترمز للعائلة نفسها التي تعيش معزولة وفي ظروف غير طبيعية. يقرر جريجرز استئجار غرفة في هذا المنزل ليكون قريباً منهم ويبدأ خطته في كشف الحقائق المخفية.</Ar>
                                                     </>
                                                 } />
 
@@ -669,6 +685,7 @@
                                                         <p>A shot rings out from the garret; Hedvig says the men are "out shooting."</p>
                                                         <p>Gregers asks if Hialmar leaves the studio work to his wife. Hialmar claims he is dedicated to a <strong>great invention</strong> (which takes time) to <Vocab word="redeem" simple="save/restore" /> the family's name. Gregers wonders if the garret distracts him, noting Hialmar has dived into a "poisonous marsh."</p>
                                                         <p>Dr. Relling and Molvik appear. Relling knows Gregers from the Hoidal works (they had skirmishes). As they toast Hedvig's upcoming birthday, Relling wonders if Gregers brought the <Vocab word="taint" simple="corruption/pollution" /> into the house with his <strong>"claim of the ideal."</strong></p>
+                                                        <Ar>في هذا الفصل تتضح طبيعة "هيلمار" الحقيقية؛ فهو رجل كسول، يترك كل أعباء العمل في الأستوديو لزوجته وابنته، بينما يقضي وقته في العلية متوهماً أنه يعمل على "اختراع عظيم" لإنقاذ سمعة عائلته، وهو في الواقع لا يفعل شيئاً. في هذه الأثناء، يلاحظ جارهم الدكتور "ريلينج" – وهو شخصية ساخرة وواقعية – محاولات جريجرز المستمرة لفرض "المثالية المطلقة" على العائلة، ويحذر من أن هذه المثالية المزعجة ستجلب الخراب والدمار لهذا المنزل الهادئ.</Ar>
                                                     </>
                                                 } />
 
@@ -678,6 +695,7 @@
                                                         <p>Hialmar confronts Gina: she was Werle's <Vocab word="concubine" simple="mistress" />. Hedvig appears breathlessly with a birthday letter from Werle promising a monthly income to Ekdal that passes to Hedvig upon his death.</p>
                                                         <p>Gregers warns Werle is trying to buy him off. Hialmar tears the letter, confronts Gina asking if Hedvig is actually his child (she replies she cannot know), and flees.</p>
                                                         <p>Hedvig thinks her father no longer wants her because she isn't his. Gregers suggests she <strong>sacrifice the precious wild duck</strong> to prove her love for her father.</p>
+                                                        <Ar>تقع الصدمة الكبرى عندما يواجه جريجرز صديقه هيلمار بالحقيقة القاسية: زوجته جينا كانت عشيقة لوالده، وهناك احتمال كبير ألا تكون "هيدفيج" ابنته الحقيقية بسبب العمى الوراثي الذي يربطها بالجد ويرلي. ينهار هيلمار نفسياً ويبدأ في التصرف بدرامية، متبرئاً من ابنته التي تعشقه. الطفلة تنهار حزناً، وهنا يتدخل جريجرز بنصيحة مريضة ومميتة: يقنع هيدفيج بأن تقتل "البطة البرية" التي تحبها بشدة لتثبت لوالدها حجم تضحيتها وحبها له عساه يسامحها.</Ar>
                                                     </>
                                                 } />
 
@@ -687,6 +705,7 @@
                                                         <p>An unkempt Hialmar enters, planning to leave and take Ekdal with him. He <Vocab word="repudiates" simple="rejects" /> Hedvig anew. Terrified, Hedvig takes a pistol and creeps into the garret.</p>
                                                         <p>Hialmar, exhausted, eats breakfast, agrees to stay a few days, and glues Werle's letter back together (rationalizing it is for his father to decline).</p>
                                                         <p>A shot rings out. Gregers triumphantly announces Hedvig has sacrificed the duck. Hialmar opens the door to discover Hedvig <Vocab word="prostrate" simple="lying flat" />—the bullet pierced her chest. Relling declares her dead and informs Gregers she certainly killed herself.</p>
+                                                        <Ar>يعود هيلمار بعد ليلة من التخبط، ورغم تظاهره بالغضب المستمر، يبدأ في اختلاق المبررات للعودة لحياته المريحة مع زوجته، مما يثبت أنه يحب العيش في الأوهام. فجأة، يُسمع دوي رصاصة من العلية؛ يبتسم جريجرز ظناً منه أن الطفلة نفذت نصيحته وقتلت البطة، لكن الكارثة تحل حين يكتشفون أن هيدفيج أطلقت النار على نفسها وماتت لتُرضي والدها. ينتهي المشهد بالدكتور ريلينج وهو يهاجم جريجرز ومثالياته بشدة، مؤكداً أن سلب الناس أوهامهم التي تبقيهم على قيد الحياة لا يؤدي إلا إلى الموت والخراب.</Ar>
                                                     </>
                                                 } />
                                             </div>
@@ -719,6 +738,7 @@
                                                     <p><strong>The Illusion:</strong> Seen by Gregers as an upstanding everyman, but presented critically by Ibsen. He lets his wife and daughter do the actual work while he daydreams in the garret about a "great invention" that never progresses. This parodies the romantic notion that creativity is driven solely by spontaneous inspiration.</p>
                                                     <p><strong>Integrity:</strong> Lacks true personal integrity. He lives in comforting illusions, seeing himself as a moral figure while avoiding responsibility. His integrity is superficial—he prefers false dignity over painful truths.</p>
                                                     <p><strong>Development:</strong> He loves Hedvig and worries about the future, but Gregers' revelation uproots him. He plans to move out, but Hedvig's death ultimately reconciles him to Gina.</p>
+                                                    <Ar>هيلمار إكدال: البطل الرومانسي الواهم. يعيش في دور الضحية النبيلة ويعتقد أنه يعمل على "اختراع عظيم"، بينما في الحقيقة هو رجل كسول ومهزوز يترك مسؤولية العمل بالكامل لزوجته وابنته. يفتقر إلى النزاهة الشخصية ويفضل العيش في الأكاذيب المريحة بدلاً من مواجهة واقع الحياة القاسي.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Gregers Werle" role="The Destructive Idealist" icon={Lightbulb} color="emerald" details={
@@ -727,6 +747,7 @@
                                                     <p><strong>The Ideal:</strong> Represents uncompromising personal integrity. He feels obligated to pursue truth and clarity at all costs ("claim of the ideal"). He <Vocab word="insinuates" simple="sneaks/inserts" /> himself into the Ekdals' lives, believing that revealing the truth will save them (like a dog rescuing the wild duck).</p>
                                                     <p><strong>The Flaw:</strong> He does not realize the Ekdals are happy living a lie. His rigid commitment to truth destroys their fragile emotional balance. Ibsen uses him to show that integrity taken to extremes, without empathy, is destructive.</p>
                                                     <p><strong>Symbolism:</strong> Referred to as "ugly" throughout the play, presaging his ultimate destructive effect. His ideals brainwash Hedvig, leading to her death.</p>
+                                                    <Ar>جريجرز ويرلي: المثالي المدمّر. يمثل السعي الأعمى وراء الحقيقة المطلقة مهما كان الثمن. يعتقد أن كشف أكاذيب الماضي سيطهّر عائلة صديقه ويوصلهم للسعادة، لكنه يتجاهل حقيقة أن بعض الناس يحتاجون لهذه الأوهام للبقاء على قيد الحياة. تؤدي تدخلاته غير المحسوبة إلى كارثة موت الطفلة، ليثبت إبسن أن المثالية بدون تعاطف هي مرض مدمر.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Hedvig Ekdal" role="The Tragic Victim" icon={HeartHandshake} color="emerald" details={
@@ -735,6 +756,7 @@
                                                     <p><strong>Personality:</strong> Bright, <Vocab word="precocious" simple="smart for her age" />, emotionally intelligent, and possesses innocent/pure integrity. She is sincere and incapable of deception. Takes things literally.</p>
                                                     <p><strong>Connection to the Duck:</strong> Highly attached to the wild duck. Like Old Ekdal, she is wounded and a prisoner in her home. When manipulated by Gregers to sacrifice the duck to prove her love for Hialmar, she takes matters into her own hands and kills herself.</p>
                                                     <p><strong>Irony:</strong> The only way she can truly be free is through death, sinking to the "depths of the sea" she imagines in the garret.</p>
+                                                    <Ar>هيدفيج: الضحية البريئة (14 عاماً). طفلة حساسة ومخلصة، مهددة بالعمى الوراثي. ترتبط عاطفياً بالبطة البرية لأنها تشعر بالعزلة مثلها. عندما يتنكر لها والدها بسبب شكوكه في نسبها، تستمع لنصيحة جريجرز المريضة وتقرر التضحية بأغلى ما تملك (حياتها) لتثبت لوالدها مدى حبها له.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Old Ekdal" role="The Broken Patriarch" icon={ShieldAlert} color="emerald" details={
@@ -742,6 +764,7 @@
                                                     <p><strong>Background:</strong> Hialmar's father, former military officer and business partner of Werle. Framed by Werle for illegal timber felling, lost everything, and went to prison. Now does clerical work for Werle.</p>
                                                     <p><strong>The Illusion:</strong> A shameful man plagued with regret, yet deeply sympathetic. He protests his loss of honor by quietly wearing his old military uniform at home. He invents an imaginary forest in the garret, pretending rabbits are bears, to simulate his past hunting days.</p>
                                                     <p><strong>Metaphorical Parallel:</strong> He IS the wild duck. Wounded by Werle, instead of killing himself, he lives in financial captivity, constantly regretting the past, reclaiming shattered fragments in the garret.</p>
+                                                    <Ar>الجد إكدال العجوز: ضابط سابق تم تشويه سمعته وسجنه بسبب خدعة من شريكه الثري. بعد خروجه من السجن، أصبح رجلاً محطماً. للهروب من هذا العار، يختبئ في علية المنزل، ويصنع غابة وهمية يمارس فيها "الصيد" ليتخيل أنه لا يزال القائد العسكري القوي. يمثل هو شخصياً "البطة البرية" التي أُصيبت واختبأت في القاع المظلم.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Håkon Werle" role="The Wealthy Industrialist" icon={Briefcase} color="emerald" details={
@@ -750,6 +773,7 @@
                                                     <p><strong>Actions:</strong> Had a scandalous relationship with Gina, then married her off to Hialmar to tie up loose ends. Estranged from Gregers.</p>
                                                     <p><strong>Current State:</strong> Losing his eyesight in old age (linking him biologically to Hedvig). Reconsiders his life, plans to marry his housekeeper Mrs. Sorby, and invites Gregers back.</p>
                                                     <p><strong>The Catalyst:</strong> His ultimate gift (the deed providing income) triggers Hialmar's tirade, leading to the tragic climax.</p>
+                                                    <Ar>هوكُن ويرلي: رجل الأعمال الثري ووالد جريجرز. شخصية ماكرة وراء دمار عائلة إكدال. مع تقدمه في العمر وبدء فقدانه لبصره، يحاول التكفير عن أخطائه سراً بدعم عائلة هيلمار مادياً. تصرفاته المعقدة تضع المتلقي أمام حيرة: هل هو حقاً شرير أم رجل يحاول إصلاح أخطاء الماضي بطريقته؟</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Gina Ekdal" role="The Practical Anchor" icon={Home} color="emerald" details={
@@ -758,6 +782,7 @@
                                                     <p><strong>Integrity:</strong> Represents practical integrity. She knows the truth about her past but chooses stability over confrontation. Her honesty is selective, aimed at protecting the household.</p>
                                                     <p><strong>Contrast:</strong> Presented as crude/uncultured, using <Vocab word="malapropisms" simple="wrong words used comically" /> and plain language (unlike Hialmar or Gregers). She accepts and overlooks the family's deceptions (willing naivety). She represents the harsh truths of the world that people try to cover up.</p>
                                                     <p><strong>Role:</strong> Associated with the idea of altering reality to hide the truth (via her photography work).</p>
+                                                    <Ar>جينا إكدال: الزوجة العملية والعمود الفقري للمنزل. على عكس البقية الذين يتحدثون في المثاليات، تهتم جينا بالأمور الملموسة كتحصيل المال وتدبير الطعام والتصوير. تدرك تماماً ماضيها المظلم لكنها تختار الصمت لحماية أسرتها، مفضلةً الاستقرار الواقعي على المواجهات المدمرة.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Dr. Relling" role="The Pragmatic Cynic" icon={Crosshair} color="emerald" details={
@@ -766,6 +791,7 @@
                                                     <p><strong>Philosophy:</strong> Invents and supplies "life-illusions" (Livslognen) for those around him. He argues these illusions prevent people from falling into existential despair.</p>
                                                     <p><strong>Conflict:</strong> Holds Gregers' idealism in utter contempt. Advocates for a realistic (even if deceitful) approach to life. He values psychological survival over moral idealism.</p>
                                                     <p><strong>Significance:</strong> Acts as a stand-in for Ibsen's viewpoint, making it especially interesting that Ibsen chose an insignificant, <Vocab word="disreputable" simple="unrespected" /> character to deliver the play's core psychological truths.</p>
+                                                    <Ar>الدكتور ريلينج: جار العائلة الطبيب الساخر (ومدمن الخمر أحياناً). يمثل صوت الحكمة الواقعية في المسرحية، وصوت الكاتب نفسه. يرى ريلينج أن البشر ضعفاء وأنهم بحاجة إلى "أكاذيب" وأوهام بسيطة (يُسميها "وهم الحياة") لكي يتحملوا قسوة الواقع. يحتقر جريجرز بشدة ويعتبره مصاباً بـ "حمى النزاهة" التي تدمر من حوله.</Ar>
                                                 </>
                                             } />
                                         </div>
@@ -780,6 +806,9 @@
                                                 The characters, particularly the Ekdals, create illusions to cope with failures. Hialmar deludes himself with dreams of invention; Ekdal retreats to attic-hunts. Gregers disrupts this fragile, deceit-built happiness with the "claim of the ideal."
                                                 <br/><br/><strong>Theme takeaway:</strong> Truth is not always liberating. Rigid ideals rarely fit emotional needs, and human happiness often depends on fragile illusions. No character is entirely right or wrong.
                                             </div>
+                                            <Ar title="الوهم مقابل الحقيقة">
+                                                يبني أفراد عائلة إكدال لأنفسهم أوهاماً للتعايش مع فشلهم (مثل اختراع هيلمار المزعوم وصيد الجد في العلية). يتدخل جريجرز محاولاً هدم هذه الأكاذيب ونشر "المثالية والحقيقة"، لكن النتيجة تكون دمار العائلة. **الدرس المستفاد:** الحقيقة المطلقة ليست دائماً مُحررة؛ أحياناً يحتاج الإنسان إلى "أكاذيب بريئة" ليتمكن من تحمل قسوة حياته.
+                                            </Ar>
 
                                             <ComparisonTable title="The Two Types of Illusion" leftTitle="Traditional Illusions" rightTitle="Transcendental (Idealistic) Illusions" color="amber" rows={[
                                                 {
@@ -805,6 +834,7 @@
                                                     right: <div className="text-center font-black text-red-600 text-lg">"Transcendental illusion kills."</div>
                                                 }
                                             ]} />
+                                            <Ar>الجدول السابق يقارن بين نوعين من الوهم: "الوهم التقليدي" الذي تمارسه عائلة إكدال كوسيلة للتأقلم والبقاء على قيد الحياة، وبين "الوهم المثالي المتعالي" الذي يعتنقه جريجرز بفرض الحقيقة بالقوة المطلقة، وهو الذي يؤدي في النهاية للقتل والدمار.</Ar>
                                         </Section>
 
                                         <div className="grid md:grid-cols-1 gap-6 overflow-visible">
@@ -816,6 +846,7 @@
                                                     <li><strong>Relling:</strong> Understands self-deception's psychological purpose; controls which truths to acknowledge.</li>
                                                 </ul>
                                             } />
+                                            <Ar>يظهر خداع النفس في المسرحية كآلية دفاعية عند كل الشخصيات تقريباً: الجد يخادع نفسه بتخيل العلية كغابة للصيد لتناسي إهانته، وهيلمار يدّعي أنه يعمل على اختراع عظيم ليتهرب من كونه أباً وزوجاً فاشلاً، وجينا تتغافل عن الحقائق فقط لتستمر الأسرة في أمان.</Ar>
                                         </div>
 
                                         <Section title="Competing Doctrines" subtitle="The Spiritual Doctors: Gregers vs. Relling" icon={Zap} color="rose">
@@ -837,6 +868,7 @@
                                                     </ul>
                                                 </div>
                                             </div>
+                                            <Ar>تمثل المسرحية صراعاً بين عقيدتين: عقيدة "المطالبة بالمثالية والحق المطلق" التي يمثلها جريجرز وتؤدي للدمار والموت لأن البشر لا يستطيعون تحمل الحقيقة الكاملة، وعقيدة "وهم الحياة" التي يطرحها الدكتور ريلينج، وتتلخص في إعطاء المرضى النفسيين جرعة من الآمال الكاذبة والأوهام الصغيرة لتبقيهم قادرين على العيش وتجنب الانهيار النفسي.</Ar>
                                         </Section>
 
                                         <div className="bg-slate-100 p-8 rounded-2xl border border-slate-200 overflow-visible">
@@ -854,6 +886,7 @@
                                                     <p className="text-sm text-slate-600">Despite his downfall, he is retrospectively idealized as a brave lieutenant and robust hunter. His ruin actually amplifies this idealized image in the minds of the sons.</p>
                                                 </div>
                                             </div>
+                                            <Ar>أقدار الشخصيات محكومة بخطايا ارتكبها الآباء في الماضي. يُصوّر ويرلي كـ "الأب الفاسد" الذي يتحكم في حياة الجميع بأمواله ومكائده، بينما يظهر الجد إكدال كـ "الأب الضحية" الذي يمجده ابنه رغم فشله وانهياره. الخطايا القديمة تطاردهم وتؤدي في النهاية لعقاب قاسي (موت هيدفيج) وكأنها لعنة القدر.</Ar>
                                         </div>
                                     </div>
                                 )}
@@ -880,6 +913,10 @@
                                                     <p className="text-sm text-emerald-800">She loses her origin (she is an adopted child of sorts). Her connection to the duck goes beyond metaphor to a lethal conclusion. Both become the object of sacrifice. When Hialmar abandons her, she is told to kill the duck, but kills herself instead. Like the duck, she doesn't belong in the house, but with her real father, Old Werle.</p>
                                                 </div>
                                             </div>
+                                            <Ar>الرمز المركزي للمسرحية "البطة البرية". تُسقط كل شخصية واقعها على هذه البطة:
+- الجد إكدال يرى فيها نفسه، الطائر الجريح الذي سقط في القاع ولم يستطع التحليق مجدداً بعد خيانة شريكه.
+- جريجرز يرى عائلة صديقه كطائر غارق في مستنقع الأكاذيب، ويرى نفسه كلب صيد منقذ.
+- هيدفيج الطفلة تتماهى مع البطة لأنها تشعر بالعزلة وأنها مسجونة داخل المنزل (بسبب العمى الوراثي ولأنها طفلة غير شرعية لويرلي). طلب التضحية بالبطة أدى لانتحار الطفلة نفسها.</Ar>
                                         </Section>
 
                                         <div className="grid md:grid-cols-2 gap-6 overflow-visible">
@@ -898,6 +935,7 @@
                                                 </ul>
                                             } />
                                         </div>
+                                        <Ar>الضوء يُفترض أن يرمز للحقيقة والإنارة (وهي مهمة جريجرز)، لكن إبسن يعكس الرمز بذكاء، فكثير من النور (الحقيقة) يعمي البصيرة ويدمر السعادة ويأتي بالخراب والموت بدلاً من الخلاص. من جانب آخر، الصورة الفوتوغرافية تُعبر عن قدرة هذه الأسرة على "تعديل الواقع" وتجميله ليبدو مثالياً (وهو ما تفعله جينا بتعديل صور الزبائن لتجميل عيوبهم).</Ar>
 
                                         <div className="bg-slate-800 text-slate-200 p-8 rounded-3xl mt-8">
                                             <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2"><Home className="text-slate-400"/> The Garret and Studio</h3>
@@ -906,6 +944,7 @@
                                                 <p><strong>The Garret:</strong> A mysterious, fantastical space associated with the wild duck. It is filled with items from the mythical "Flying Dutchman" (adding a magical seascape allure).</p>
                                                 <p><strong>Symbolism:</strong> The garret symbolizes Old Ekdal (the "shipwrecked man"). It is a stage for deeper fantasies where historical time halts, replaced by cosmic/mythical time (highlighted by Hedvig referencing death and an hourglass). The layout physically represents the family's psychological landscape.</p>
                                             </div>
+                                            <Ar>المكان نفسه يحمل دلالات عميقة. "الأستوديو" يمثل العالم الحقيقي حيث تُعالَج الأمور وتُجمَّل. بينما "العلية المظلمة" تُمثل العقل الباطن والعالم الخيالي الذي هربت إليه الأسرة للاختباء، حيث يتوقف الزمن تماماً ويسيطر الوهم والأساطير (غابة الصيد الوهمية).</Ar>
                                         </div>
                                     </div>
                                 )}
@@ -916,6 +955,7 @@
                                         <div className="text-center mb-10">
                                             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">Modern Realism</h2>
                                             <p className="text-slate-500 text-lg">Ibsen's portrayal of human complexities and social contradictions.</p>
+                                            <Ar>الواقعية الحديثة: كيف صور إبسن تعقيدات الطبيعة البشرية والتناقضات الاجتماعية بأسلوب واقعي بعيداً عن المثاليات القديمة.</Ar>
                                         </div>
 
                                         <div className="grid md:grid-cols-1 gap-6 overflow-visible">
@@ -928,6 +968,7 @@
                                                     <li><strong className="text-slate-800 block">Domestic Settings:</strong> Uses familiar spaces (Werle household, Ekdal apartment) as <Vocab word="microcosms" simple="miniature versions" /> for larger conflicts.</li>
                                                     <li><strong className="text-slate-800 block">Moral Ambiguity:</strong> Characters are not simply good or evil. They grapple with conflicting desires, reflecting true human nature.</li>
                                                 </ul>
+                                                <Ar>من سمات الواقعية الحديثة هنا: الغوص في أعماق الصراع النفسي الداخلي للشخصيات بدلاً من الأكشن الخارجي، استخدام إعدادات منزلية بسيطة كمسرح للتعبير عن صراعات مجتمعية كبرى، حوارات طبيعية يتخللها التردد والتأتأة، والأهم من ذلك التخلي عن ثنائية الخير والشر، فشخصيات إبسن واقعية تعاني من تناقضات ولا يوجد فيها بطل مثالي أو شرير مطلق.</Ar>
                                                 
                                                 <div className="grid md:grid-cols-2 gap-4 mt-6 pt-6 border-t border-slate-100 overflow-visible">
                                                     <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
@@ -952,6 +993,7 @@
                                                     <li className="overflow-visible"><strong><span className="text-emerald-700">The Illusion of Idealism:</span></strong> Blindly pursuing unrealistic ideals (like Gregers) has destructive consequences.</li>
                                                 </ul>
                                             </div>
+                                            <Ar>النقد الاجتماعي لدى إبسن يطال النفاق البرجوازي وتفضيل المجتمع للصور الزائفة على الحقيقة القاسية. يبرز إبسن انعدام المساواة الطبقية (بين عائلة ويرلي الثرية وإكدال الفقيرة)، ويتحدى دور المرأة المهضوم (المتمثل في كفاح جينا)، ويختم بنقد قاسي لأولئك الذين يسعون وراء "المثاليات المطلقة" بطريقة متطرفة ومريضة تدمر من حولهم بدلاً من إنقاذهم.</Ar>
                                         </Section>
                                     </div>
                                 )}
@@ -972,10 +1014,13 @@
                                                 <p><span className="text-emerald-700 font-sans text-xs uppercase tracking-wider font-extrabold mr-2">GREGERS:</span>Life-illusion? I didn't catch what you said.</p>
                                                 <p><span className="text-amber-700 font-sans text-xs uppercase tracking-wider font-extrabold mr-2">RELLING:</span>Yes, I said illusion. For illusion, you know, is the stimulating principle.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play The Wild Duck by Henrik Ibsen. Dr. Relling is talking to Gregers Werle in Act V inside the photography studio. This happens right after Gina's secret past is revealed, leaving Hialmar emotionally shattered. Relling enters to check on Hialmar and argues with Gregers about how to handle this tragedy.",
-                                            "Relling completely rejects Gregers' demand for absolute truth. Instead, he treats Hialmar's distress as a mental illness that needs a 'life-illusion' (Livslognen) to heal. He argues this comfortable lie is a vital medicine that helps fragile people survive. Through Relling, Ibsen shows that blind idealism without empathy is a destructive sickness that ruins families."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play The Wild Duck by Henrik Ibsen. Dr. Relling is talking to Gregers Werle in Act V inside the photography studio. This happens right after Gina's secret past is revealed, leaving Hialmar emotionally shattered. Relling enters to check on Hialmar and argues with Gregers about how to handle this tragedy.</p>
+                                                <p>Relling completely rejects Gregers' demand for absolute truth. Instead, he treats Hialmar's distress as a mental illness that needs a 'life-illusion' (Livslognen) to heal. He argues this comfortable lie is a vital medicine that helps fragile people survive. Through Relling, Ibsen shows that blind idealism without empathy is a destructive sickness that ruins families.</p>
+                                                <Ar>يناقش الطبيب ريلينج هنا نظرية "وهم الحياة" مع جريجرز. ريلينج يرفض المثالية المدمرة التي ينشرها جريجرز ويعتبر أفعاله تخريباً، مؤكداً أن الإنسان البسيط (مثل هيلمار) مريض نفسياً ويحتاج للعيش في كذبة مطمئنة (أو وهم مصطنع) لكي يتحمل قسوة الواقع ويستمر في الحياة، فهذه الأوهام هي مسكناته العلاجية.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-emerald-500" themeColor="emerald" dialogue={
                                             <>
@@ -988,19 +1033,25 @@
                                                 <p><span className="text-emerald-700 font-sans text-xs uppercase tracking-wider font-extrabold mr-2">GREGERS:</span>But your wild duck came up again, Lieutenant Old Ekdal.</p>
                                                 <p><span className="text-slate-600 font-sans text-xs uppercase tracking-wider font-extrabold mr-2">EKDAL:</span>He had such an amazingly clever dog, your father had. And that dog — he dived in after the duck and fetched her up again.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play The Wild Duck by Henrik Ibsen. Old Ekdal, Hialmar, and Hedvig are talking to Gregers Werle in Act II inside the studio. The family is happily showing Gregers their captive wild duck. Old Ekdal explains how Håkon Werle shot the bird, causing it to dive deep into the marsh and hide in the seaweed.",
-                                            "The wild duck is the play's central symbol (or 'quilting point'). Each character projects their own life onto it. Old Ekdal is like the duck, hiding in the garret to escape his public disgrace. Hialmar is trapped in the 'poisonous marsh' of his marriage's lies. Gregers sees himself as the clever dog diving down to save them. Hedvig also mirrors the bird because she is isolated and adopted, foreshadowing her tragic death."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play The Wild Duck by Henrik Ibsen. Old Ekdal, Hialmar, and Hedvig are talking to Gregers Werle in Act II inside the studio. The family is happily showing Gregers their captive wild duck. Old Ekdal explains how Håkon Werle shot the bird, causing it to dive deep into the marsh and hide in the seaweed.</p>
+                                                <p>The wild duck is the play's central symbol (or 'quilting point'). Each character projects their own life onto it. Old Ekdal is like the duck, hiding in the garret to escape his public disgrace. Hialmar is trapped in the 'poisonous marsh' of his marriage's lies. Gregers sees himself as the clever dog diving down to save them. Hedvig also mirrors the bird because she is isolated and adopted, foreshadowing her tragic death.</p>
+                                                <Ar>يشرح الجد إكدال قصة البطة البرية وكيف أصابها والد جريجرز واختبأت في القاع، ثم أنقذها كلبه. هذه القصة هي تلخيص مجازي للمسرحية؛ عائلة إكدال الجريحة غارقة في مستنقع الأكاذيب والعزلة هرباً من الواقع، ويرى جريجرز في نفسه كلب الصيد المنقذ الذي يسحبهم لبر الأمان بكشف الحقيقة، لكنه يغفل أن إنقاذه المزعوم هو ما سيدمرهم.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-rose-500" themeColor="emerald" dialogue={
                                             <>
                                                 <p><span className="text-rose-700 font-sans text-xs uppercase tracking-wider font-extrabold mr-2">GINA:</span>[dusting the backs of the chairs] A nice job you'll have to find such another big garret for the rabbits.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play The Wild Duck by Henrik Ibsen. Gina Ekdal is speaking to Hialmar in Act V inside the studio. Hialmar has just made a highly theatrical return, loudly claiming he will leave the house because he cannot live with 'traitors.' Gina calmly ignores his dramatic tantrums and focuses on her routine cleaning.",
-                                            "Gina's simple act of dusting comically exposes Hialmar's 'romantic hero' act as a childish pose. While Hialmar daydreams about a grand mission, his survival actually depends entirely on Gina's hard work and household management. This contrast proves Hialmar has no real intention of leaving. He relies completely on this domestic comfort to pretend he is a successful leader."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play The Wild Duck by Henrik Ibsen. Gina Ekdal is speaking to Hialmar in Act V inside the studio. Hialmar has just made a highly theatrical return, loudly claiming he will leave the house because he cannot live with 'traitors.' Gina calmly ignores his dramatic tantrums and focuses on her routine cleaning.</p>
+                                                <p>Gina's simple act of dusting comically exposes Hialmar's 'romantic hero' act as a childish pose. While Hialmar daydreams about a grand mission, his survival actually depends entirely on Gina's hard work and household management. This contrast proves Hialmar has no real intention of leaving. He relies completely on this domestic comfort to pretend he is a successful leader.</p>
+                                                <Ar>بينما يصرخ هيلمار ويقوم بحركات مسرحية درامية مهدداً بترك المنزل بعد اكتشاف ماضي زوجته، تستمر جينا بهدوء شديد في تنظيف الكراسي ونفض الغبار. هذا يظهر الفرق الشاسع بين غضب هيلمار الطفولي الوهمي، وواقعية جينا. هيلمار يظن نفسه بطلاً، ولكنه في الحقيقة عاجز عن تدبير أبسط أمور حياته بدون زوجته التي تقوم بكل العمل.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-purple-500" themeColor="emerald" dialogue={
                                             <>
@@ -1010,10 +1061,13 @@
                                                 <p><span className="text-emerald-700 font-sans text-xs uppercase tracking-wider font-extrabold mr-2">GREGERS:</span>And you read the books, I suppose?</p>
                                                 <p><span className="text-purple-700 font-sans text-xs uppercase tracking-wider font-extrabold mr-2">HEDVIG:</span>Oh, yes, when I get the chance. Most of them are English though, and I don't understand English. But then I look at the pictures. — There is one great big book called Harrison's History of London. It must be a hundred years old; and there are such heaps of pictures in it. At the beginning there is Death with an hour-glass and a woman. I think that is horrid. But then there are all the other pictures of churches, and castles, and streets, and great ships sailing on the sea.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play The Wild Duck by Henrik Ibsen. Hedvig Ekdal is talking to Gregers Werle in Act III inside the studio. In this quiet moment, Hedvig describes her lonely life and the strange old books she reads in the backroom garret.",
-                                            "The stopped clock shows that normal time has halted in the garret, turning it into a timeless dream-space where the family escapes reality. Because her failing eyesight keeps her out of school, Hedvig relies on these picture books to escape her isolation. The specific image of Death, the hourglass, and the woman acts as dark foreshadowing. It hints at Hedvig's eventual suicide, framed as cosmic revenge for the fathers' past sins."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play The Wild Duck by Henrik Ibsen. Hedvig Ekdal is talking to Gregers Werle in Act III inside the studio. In this quiet moment, Hedvig describes her lonely life and the strange old books she reads in the backroom garret.</p>
+                                                <p>The stopped clock shows that normal time has halted in the garret, turning it into a timeless dream-space where the family escapes reality. Because her failing eyesight keeps her out of school, Hedvig relies on these picture books to escape her isolation. The specific image of Death, the hourglass, and the woman acts as dark foreshadowing. It hints at Hedvig's eventual suicide, framed as cosmic revenge for the fathers' past sins.</p>
+                                                <Ar>تصف هيدفيج محتويات العلية الغريبة، مشيرة إلى ساعة معطلة وصور في كتاب قديم تُظهر الموت والساعة الرملية. الساعة المعطلة ترمز إلى توقف الزمن في هذا العالم الوهمي الذي هربوا إليه. وصورة "الموت" هي تمهيد رمزي لموت هيدفيج الوشيك؛ فالماضي والزمن المتجمد يلاحقهم كالشبح للانتقام من خطايا آبائهم القديمة.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-rose-500" themeColor="emerald" dialogue={
                                             <>
@@ -1023,19 +1077,25 @@
                                                 <p><span className="text-emerald-700 font-sans text-xs uppercase tracking-wider font-extrabold mr-2">GREGERS:</span>[going] To be the thirteenth at table.</p>
                                                 <p><span className="text-amber-700 font-sans text-xs uppercase tracking-wider font-extrabold mr-2">RELLING:</span>The devil it is.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play The Wild Duck by Henrik Ibsen. Dr. Relling and Gregers Werle are speaking the final lines of Act V in the studio. Hedvig's dead body has just been discovered in the garret, leaving the two men alone to look at the tragic wreckage of the family.",
-                                            "Relling's bitter comment is a final judgment on Gregers' ideals. He points out that ordinary life is tolerable when moral reformers stop forcing painful truths onto vulnerable people. Gregers calling himself the 'thirteenth at table' is a biblical reference to Judas, marking him as a betrayer rather than a savior. His fanatical pursuit of truth without empathy brings only death, completely destroying the idea of a heroic rescuer."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play The Wild Duck by Henrik Ibsen. Dr. Relling and Gregers Werle are speaking the final lines of Act V in the studio. Hedvig's dead body has just been discovered in the garret, leaving the two men alone to look at the tragic wreckage of the family.</p>
+                                                <p>Relling's bitter comment is a final judgment on Gregers' ideals. He points out that ordinary life is tolerable when moral reformers stop forcing painful truths onto vulnerable people. Gregers calling himself the 'thirteenth at table' is a biblical reference to Judas, marking him as a betrayer rather than a savior. His fanatical pursuit of truth without empathy brings only death, completely destroying the idea of a heroic rescuer.</p>
+                                                <Ar>الأسطر الأخيرة في المسرحية بعد اكتشاف جثة هيدفيج. يحكم الدكتور ريلينج على مثاليات جريجرز بالفشل التام، مؤكداً أن الحياة ستكون محتملة وجيدة لولا تدخل "المثاليين" المتطرفين لتدمير استقرار البسطاء. إجابة جريجرز بوصف نفسه بـ "الثالث عشر على الطاولة" هي إشارة توراتية لشخصية يهوذا الخائن، ليعترف بأنه جلب الخراب والخيانة بدلاً من الخلاص والمثالية.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-indigo-500" themeColor="emerald" dialogue={
                                             <>
                                                 <p><span className="text-emerald-700 font-sans text-xs uppercase tracking-wider font-extrabold mr-2">GREGERS:</span>(without heeding). And there he is now, with his great, confiding, childlike mind, compassed about with all this treachery living under the same roof with such a creature, and never dreaming that what he calls his home is built upon a lie! (Comes a step nearer.) When I look back upon your past, I seem to see a battle-field with shattered lives on every hand.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play The Wild Duck by Henrik Ibsen. Gregers Werle is talking to his father, Håkon Werle, in Act I. Gregers is confronting his father about the dark secrets surrounding the Ekdal family. He has just realized that Hialmar's comfortable life is completely built on Håkon's past lies and manipulation.",
-                                            "This passage highlights Gregers' dangerous idealism. He firmly believes that deception has ruined the Ekdals, so he feels a moral duty to tell Hialmar the truth, ignoring the pain it will cause. This sets up the play's main conflict: Gregers thinks absolute truth is required for happiness, while Dr. Relling believes that protective illusions are what actually keep people alive."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play The Wild Duck by Henrik Ibsen. Gregers Werle is talking to his father, Håkon Werle, in Act I. Gregers is confronting his father about the dark secrets surrounding the Ekdal family. He has just realized that Hialmar's comfortable life is completely built on Håkon's past lies and manipulation.</p>
+                                                <p>This passage highlights Gregers' dangerous idealism. He firmly believes that deception has ruined the Ekdals, so he feels a moral duty to tell Hialmar the truth, ignoring the pain it will cause. This sets up the play's main conflict: Gregers thinks absolute truth is required for happiness, while Dr. Relling believes that protective illusions are what actually keep people alive.</p>
+                                                <Ar>يواجه جريجرز والده الثري بخطاياه في الفصل الأول. يرى جريجرز ماضي أبيه كساحة معركة دمرت حياة الآخرين، ويعبر عن صدمته بأساس الأكاذيب الذي بنيت عليه عائلة هيلمار. هذا النص يمهد لدوافع جريجرز الخطيرة؛ فهو يشعر بالمسؤولية الأخلاقية لتدمير هذه الأكاذيب إيماناً منه بأن الحقيقة وحدها تصنع السعادة، متجاهلاً العواقب الكارثية القادمة.</Ar>
+                                            </>
+                                        } />
                                     </div>
                                 )}
                             </div>
@@ -1061,6 +1121,7 @@
                                                 <p className="text-slate-600 text-sm leading-relaxed">
                                                     English playwright, poet, and actor, widely regarded as the greatest writer in the English language. <em>Othello</em> is a profound tragedy in five acts, driven by jealousy, manipulation, and racial isolation.
                                                 </p>
+                                                <Ar>ويليام شكسبير: أعظم كُتّاب المسرح والأدب الإنجليزي. "عطيل" هي واحدة من أهم مسرحياته التراجيدية، وتدور أحداثها حول مواضيع الغيرة القاتلة، التلاعب النفسي، الخداع الذي يغطي الحقيقة، ومأساة البطل المنعزل عرقياً ونفسياً عن مجتمعه.</Ar>
                                             </div>
                                         </div>
 
@@ -1071,6 +1132,7 @@
                                                         <p>The play opens on a street in Venice with an argument between Roderigo and Iago. Roderigo is upset because Desdemona, whom he loves, has married <strong>Othello</strong>. Iago hates Othello for promoting the inexperienced Michael Cassio to lieutenant instead of him.</p>
                                                         <p>Iago and Roderigo wake Brabantio (Desdemona's father) to tell him his daughter was "stolen" by Othello the Moor. Brabantio accuses Othello of using witchcraft.</p>
                                                         <p>Before the Duke of Venice, Othello calmly explains he won Desdemona through his stories of adventure and war. Desdemona confirms her love and loyalty to her husband. The Duke sends Othello to Cyprus to defend against a Turkish invasion, and Desdemona accompanies him.</p>
+                                                        <Ar>تبدأ المسرحية في البندقية بغضب الشاب "رودريجو" لأن حبيبته "ديدمونة" هربت لتتزوج سراً من الجنرال الأسمر "عطيل". يستغل "إياجو" (حامل لواء عطيل) هذا الغضب لتنفيذ انتقامه الخاص، فهو يكره عطيل بشدة لأنه لم يرقّه واختار "كاسيو" بدلاً منه. يقوم إياجو ورودريجو بإثارة غضب والد ديدمونة الذي يتهم عطيل باستخدام السحر الأسود لخطف ابنته. لكن أمام مجلس الدوق، يدافع عطيل عن نفسه بلباقة، وتؤكد ديدمونة أن حبها له نابع من إعجابها بشجاعته وبطولاته. يقتنع الدوق ويرسل عطيل لقيادة الجيش في قبرص، وترافقه ديدمونة.</Ar>
                                                     </>
                                                 } />
 
@@ -1079,6 +1141,7 @@
                                                         <p>In Cyprus, a storm destroys the Turkish fleet. Othello announces a night of celebration for the victory and his marriage. Iago begins his plot by telling Roderigo that Desdemona will soon tire of Othello and look to Cassio.</p>
                                                         <p>Iago purposely gets Cassio drunk during the revels. He then sends Roderigo to provoke him. Cassio starts a fight and ends up stabbing Montano, the governor of Cyprus.</p>
                                                         <p>Othello arrives, stops the commotion, and strips Cassio of his rank. A devastated Cassio is advised by Iago to ask Desdemona to help him get his position back.</p>
+                                                        <Ar>بمجرد وصولهم إلى قبرص، تدمر عاصفة قوية أسطول الأعداء الأتراك، فيعلن عطيل بدء الاحتفالات بالنصر وبالزواج. هنا يبدأ إياجو في نسج خيوط مؤامرته؛ حيث يخدع الملازم "كاسيو" ويشجعه على الإفراط في شرب الخمر (وهي نقطة ضعف كاسيو)، ثم يرسل رودريجو لاستفزازه. يندلع شجار عنيف يتدخل فيه حاكم قبرص ويُصاب. يغضب عطيل ويجرد كاسيو من رتبته العسكرية. يتدخل إياجو كـ "صديق ناصح" ويقترح على كاسيو المنهار أن يطلب من ديدمونة التوسط له عند عطيل ليعيده لمنصبه، وهذه هي الخطوة الأولى في فخ تدمير الجميع.</Ar>
                                                     </>
                                                 } />
 
@@ -1087,6 +1150,7 @@
                                                         <p>Desdemona promises Cassio she will help him. When Othello and Iago approach, Cassio leaves quickly out of shame. Iago uses this moment to plant the seed of doubt: <em>"I cannot think it, that he would steal away so guilty-like."</em></p>
                                                         <p>Iago continuously suggests that Desdemona and Cassio are having an affair. Desdemona's innocent pleading for Cassio only makes Othello more suspicious.</p>
                                                         <p>Later, Othello complains of a headache. Desdemona offers her handkerchief to soothe him, but it drops. Emilia picks it up and gives it to Iago. Iago leaves it in Cassio's room as "ocular proof" of the affair.</p>
+                                                        <Ar>تدافع ديدمونة بصدق وحسن نية عن كاسيو أمام زوجها عطيل. يستغل إياجو هذه الشفاعة ليزرع بذور الشك المسمومة في عقل عطيل، ملمحاً بذكاء خبيث إلى وجود علاقة غرامية خفية بين ديدمونة وكاسيو. وفي لحظة فاصلة، تسقط ديدمونة منديلاً ثميناً كان أول هدية من عطيل لها؛ تلتقطه "إميليا" (زوجة إياجو) وتعطيه لزوجها دون أن تعرف نواياه. يأخذ إياجو المنديل ويزرعه خلسة في غرفة كاسيو ليستخدمه لاحقاً كـ "دليل مادي قاطع" على الخيانة المزعومة.</Ar>
                                                     </>
                                                 } />
 
@@ -1095,6 +1159,7 @@
                                                         <p>Through Iago's extreme <Vocab word="machinations" simple="schemes/plots" />, Othello falls into an epileptic trance from jealousy. When he wakes, Iago tells him to hide and listen as he talks to Cassio about the affair.</p>
                                                         <p>Iago asks Cassio about his mistress, Bianca (a prostitute). Othello, out of earshot, believes they are laughing about Desdemona. Bianca enters with the handkerchief, proving to Othello that Cassio has it.</p>
                                                         <p>Lodovico arrives with letters from Venice ordering Othello home and leaving Cassio in charge. Othello, fully consumed by rage, strikes Desdemona in public. Iago convinces Roderigo to murder Cassio to keep Desdemona in Cyprus.</p>
+                                                        <Ar>يفقد عطيل صوابه تدريجياً وتنهشه نيران الغيرة لدرجة إصابته بنوبة صرع. لزيادة تأكيد الكذبة، يرتب إياجو موقفاً خبيثاً؛ يجعل عطيل يختبئ ويراقب محادثة بين إياجو وكاسيو حول "بيانكا" (عشيقة كاسيو)، لكنه يوهم عطيل أنهم يتحدثون عن ديدمونة. تبلغ الغيرة ذروتها عندما تدخل بيانكا وهي تحمل المنديل الثمين غاضبة. يقتنع عطيل تماماً بخيانة زوجته، وأمام مبعوثي البندقية، يفقد أعصابه ويصفع ديدمونة بوحشية. في هذه الأثناء، يقنع إياجو رودريجو بضرورة اغتيال كاسيو.</Ar>
                                                     </>
                                                 } />
 
@@ -1104,6 +1169,7 @@
                                                         <p>Meanwhile, Othello stands over sleeping Desdemona. Despite her desperate pleas of innocence, he smothers her. Emilia enters, discovers the murder, and raises the alarm.</p>
                                                         <p>Othello defends his action by mentioning the handkerchief. Emilia realizes Iago's evil plot and reveals the truth. A crushed Othello tries to kill Iago. Iago stabs Emilia and flees, but is caught.</p>
                                                         <p>Othello makes a final speech, asking to be remembered as one who <em>"loved not wisely but too well,"</em> and kills himself. Iago is ordered to be executed.</p>
+                                                        <Ar>في ظلام الليل، ينجح إياجو في إصابة كاسيو وقتل رودريجو ليتخلص من الأدلة. في نفس الوقت، يتسلل عطيل المليء بالشكوك إلى غرفة نوم ديدمونة ويخنقها بدم بارد رغم توسلاتها وتأكيدها على براءتها. تدخل إميليا وتكتشف الجريمة المروعة، وعندما يبرر عطيل فعلته بـ "المنديل"، تدرك إميليا خطة زوجها الشرير إياجو وتفضحه أمام الجميع. يندم عطيل ندماً قاتلاً بعد اكتشاف براءة زوجته وغفلته، فيطعن إياجو ثم يقتل نفسه ليموت بجوار ديدمونة. في النهاية يتم القبض على إياجو ليواجه عقاباً قاسياً.</Ar>
                                                     </>
                                                 } />
                                             </div>
@@ -1135,6 +1201,7 @@
                                                     <p><strong>Background:</strong> A Christian Moor and highly respected general in Venice. He marries Desdemona secretly.</p>
                                                     <p><strong>The Outsider:</strong> We hear about him before we see him. Iago paints him as a boastful, sensual beast. But when we meet him, he is noble and calm. His color is a visual symbol of his status as the "outsider." He is a soldier in a commercial city; Venice needs his skills, but he is never truly one of them.</p>
                                                     <p><strong>The Tragedy:</strong> He judges men by his own high motives. When corrupted by Iago's lies and his own deep-seated insecurities about his age and race, he transforms from a rational commander into a jealous beast, ultimately destroying the love that was the center of his world.</p>
+                                                    <Ar>عطيل (Othello): البطل التراجيدي الغريب. جنرال أسود البشرة يحظى باحترام عسكري كبير لكنه منبوذ اجتماعياً وعرقياً. يمتلك قلباً نبيلاً لكنه ساذج ويثق بمن حوله بسهولة. يستخدم إياجو شعور عطيل بالنقص كـ "غريب" ليزرع فيه الغيرة القاتلة، ليتحول من بطل رزين وعاشق مخلص إلى وحش مهووس يقتل زوجته بيده.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Iago" role="The Machiavellian Villain" icon={Crosshair} color="indigo" details={
@@ -1142,6 +1209,7 @@
                                                     <p><strong>Background:</strong> Othello's <Vocab word="ensign" simple="standard-bearer" />. He hates Othello for giving the lieutenancy to Cassio and suspects Othello slept with his wife.</p>
                                                     <p><strong>The Antithesis:</strong> Iago is the direct opposite of Othello. He is crooked, selfish, and revels in deception. He views humans merely as animals and operates in a world of pure hatred.</p>
                                                     <p><strong>Motiveless Malignity:</strong> While he gives many reasons for his actions, they seem like excuses. He hates the "daily beauty" in others' lives. His motivation remains mysterious; looking into Iago is like looking into the "heart of darkness." He lacks empathy entirely, manipulating reality to destroy four different lives without remorse.</p>
+                                                    <Ar>إياجو (Iago): الشرير المكيافيلي المُتلاعب. يمثل أقصى درجات الخبث والشر الذي لا مبرر له سوى الرغبة في التدمير وكراهية رؤية الآخرين سعداء. ببراعة فائقة، يصنع من نفسه صورة الرجل "الصادق والموثوق" ليتلاعب بعقول الجميع، محولاً ثقتهم به إلى سلاح يدمرهم واحداً تلو الآخر بلا ذرة ندم.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Desdemona" role="The Courageous Victim" icon={HeartHandshake} color="indigo" details={
@@ -1149,6 +1217,7 @@
                                                     <p><strong>Background:</strong> Brabantio's daughter. She elopes with Othello, shocking her father who believes it must be "black magic."</p>
                                                     <p><strong>Personality:</strong> She is not just a passive victim. She showed great initiative in courting Othello, asking him to tell his stories. She is a woman of great independence, determination, and courage, defying her father and the Venetian norms to be with the man she loves.</p>
                                                     <p><strong>Significance:</strong> Her love is pure but also physical (insisting on going to Cyprus for conjugal rights). She possesses a shining innocence and touching naivety. She stands for the radiant faith and fortitude of humanity, sharply contrasting with Iago's dark villainy.</p>
+                                                    <Ar>ديدمونة (Desdemona): الضحية الشجاعة. امرأة مخلصة، محبة بقوة وعناد، تكسر التقاليد الأرستقراطية لزواجها من عطيل الأسمر. تدفع حياتها ثمناً لبرائتها وسذاجتها الطيبة، حيث استغل إياجو لطفها ودفاعها الإنساني عن كاسيو كأدوات لإقناع عطيل بخيانتها الوهمية.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Emilia" role="The Practical Realist" icon={Home} color="indigo" details={
@@ -1156,6 +1225,7 @@
                                                     <p><strong>Background:</strong> Iago's wife and Desdemona's attendant. She unwittingly aids Iago by giving him the dropped handkerchief.</p>
                                                     <p><strong>Philosophy:</strong> Unlike Desdemona's idealism, Emilia is a worldly realist. She accepts people for what they are and sees marriage as a social contract. She is aware of men's flaws and speaks out fiercely against husbands who mistreat their wives.</p>
                                                     <p><strong>Redemption:</strong> She rescues "common sense" from Iago's corruption. In the end, she proves capable of ultimate loyalty and courage. By exposing her husband's lies, she sacrifices her own life for the truth and her faith in Desdemona.</p>
+                                                    <Ar>إميليا (Emilia): الواقعية والشجاعة. زوجة إياجو البراغماتية التي تفهم طبيعة الرجال القاسية جيداً. تُخطئ بسذاجة حينما تسلم المنديل لزوجها، لكنها تكفّر عن خطئها ببطولة نادرة في النهاية عندما تقف في وجه زوجها القاتل لتكشف خطته الدنيئة وتبرئ ديدمونة وتضحي بحياتها لأجل الحقيقة.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Michael Cassio" role="The Sophisticated Deputy" icon={Briefcase} color="indigo" details={
@@ -1163,6 +1233,7 @@
                                                     <p><strong>Background:</strong> Othello's newly appointed lieutenant. A Florentine with elegant manners.</p>
                                                     <p><strong>Personality:</strong> He is a good, responsible soldier (chosen to replace Othello in Cyprus), but has a critical weakness: a "bad head for drinking," which Iago exploits to get him fired.</p>
                                                     <p><strong>Significance:</strong> He is a charming "ladies' man." His civility towards Desdemona makes Iago's lies seem believable to Othello. His liaison with the prostitute Bianca is cleverly used by Iago to provide the fake "ocular proof" of the affair.</p>
+                                                    <Ar>مايكل كاسيو (Michael Cassio): الملازم المهذب. جندي وفيّ يمتلك وسامة ولباقة مع النساء مما يجعله فريسة سهلة في مؤامرة إياجو لاتهامه بالخيانة. نقطة ضعفه الكبرى هي عدم تحمله لشرب الخمر، وهو الفخ الذي يوقعه إياجو فيه لتجريده من رتبته وبدء سلسلة الكوارث.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Roderigo" role="The Foolish Dupe" icon={Users} color="indigo" details={
@@ -1170,6 +1241,7 @@
                                                     <p><strong>Background:</strong> A rich, jealous suitor who pays Iago to help him win Desdemona.</p>
                                                     <p><strong>Personality:</strong> He is a fool pure and simple. He is entirely manipulated by Iago, doing all his dirty work (starting the fight, attempting to kill Cassio).</p>
                                                     <p><strong>Significance:</strong> Because he is a fool, Iago speaks openly to him, allowing the audience to hear Iago's true, evil motives. Roderigo also provides proof of Desdemona's virtue, as he holds her in high esteem despite trying to seduce her.</p>
+                                                    <Ar>رودريجو (Roderigo): العاشق الساذج والأحمق. رجل غني مهووس بحب ديدمونة، يستغله إياجو كمصدر للمال وكأداة لتنفيذ أعماله القذرة (كافتعال الشجار ومحاولة قتل كاسيو). وجوده في المسرحية مهم لأنه الشخصية الوحيدة التي يبوح لها إياجو ببعض نواياه الشريرة الحقيقية ليفهمها الجمهور.</Ar>
                                                 </>
                                             } />
                                         </div>
@@ -1184,6 +1256,9 @@
                                                 The theme of "Seeming" revolves entirely around Iago. He is called "honest Iago" by almost everyone, yet he is treacherous and manipulative. Desdemona is the exact opposite: Othello believes she is deceitful, when she is actually completely pure.
                                                 <br/><br/><strong>Theme takeaway:</strong> Misrepresentation allows evil to gain trust. Trusting in a false "honesty" becomes the crucial contributor to the characters' downfall. Uncovering reality earlier would have changed the entire tragedy.
                                             </div>
+                                            <Ar title="المظهر مقابل الحقيقة والواقع">
+                                                يعتمد جوهر التراجيديا هنا على تناقض "المظاهر". يُعرف إياجو وسط الجميع بأنه "إياجو الصادق الأمين"، بينما هو في الحقيقة ثعلب ماكر وشرير. على النقيض تماماً، تظهر ديدمونة في عقل عطيل كزوجة خائنة كاذبة، بينما حقيقتها هي البراءة والوفاء المطلق. فشل البطل في التفريق بين القناع الزائف والحقيقة المخبأة كان سبب دمارهم جميعاً.
+                                            </Ar>
 
                                             <ComparisonTable title="The Distorted Mirror" leftTitle="Appearance (The Lie)" rightTitle="Reality (The Truth)" color="amber" rows={[
                                                 {
@@ -1207,6 +1282,7 @@
                                                     </div>
                                                 }
                                             ]} />
+                                            <Ar>يوضح الجدول التناقض القاتل: إياجو الصادق ظاهرياً هو الشرير الحقيقي، وديدمونة الخائنة ظاهرياً هي الوفية البريئة.</Ar>
                                         </Section>
 
                                         <div className="grid md:grid-cols-2 gap-6 overflow-visible">
@@ -1225,6 +1301,7 @@
                                                 </ul>
                                             } />
                                         </div>
+                                        <Ar>الغيرة هي "الوحش ذو العيون الخضراء" الذي أعمى البصيرة وأفقد عطيل عقله واتزانه، فتحول من جنرال حكيم إلى وحش دموي. ومن جهة أخرى، يجسد إياجو التصميم المكيافيلي القاسي، حيث يضع خططه في سرية تامة ويتلاعب بعقول ضحاياه دون أي رادع أخلاقي أو ندم، مسبباً دمار أربع حيوات دفعة واحدة.</Ar>
                                     </div>
                                 )}
 
@@ -1250,6 +1327,10 @@
                                                     <p className="text-sm text-indigo-800">Othello claims the handkerchief has magical properties—woven by a 200-year-old prophet using silk from sacred worms and dye from mummified virgins' hearts. His mother used it to ensure his father's loyalty. The pattern of <strong>red strawberries on a white background</strong> visually suggests the bloodstains on a virgin's wedding sheets. Therefore, losing the handkerchief signifies the ultimate loss of chastity and marital fidelity.</p>
                                                 </div>
                                             </div>
+                                            <Ar>المنديل هو أداة الهدم الرمزية الكبرى في المسرحية؛ يحمل معنى مختلفاً لكل شخصية:
+- بالنسبة لديدمونة: هو رمز نقي ومقدس للحب، كونه أول هدية من زوجها.
+- بالنسبة لإياجو: مجرد أداة تلاعب ماكرة وخبيثة، يستخدمها كـ "دليل بَصَري مزيف" لإقناع عطيل بالخيانة.
+- بالنسبة لعطيل: هو إرث سحري يرمز لعفة الزوجة ووفائها. لونه الأبيض المنقط بفراولة حمراء يرمز لقطرات الدماء على أغطية سرير الزفاف (دليل العذرية). لذا، ضياع المنديل ووقوعه في يد كاسيو لم يكن مجرد ضياع لقطعة قماش، بل اعتبره عطيل دليلاً مادياً قاطعاً على ضياع شرف ديدمونة وفقدانها لعفتها.</Ar>
                                         </Section>
                                     </div>
                                 )}
@@ -1260,6 +1341,7 @@
                                         <div className="text-center mb-10">
                                             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">Critical Analysis</h2>
                                             <p className="text-slate-500 text-lg">The psychological battleground of Shakespeare's tragedy.</p>
+                                            <Ar>التحليل النقدي: ساحة المعركة النفسية في تراجيديا شكسبير وكيف يطغى الشر الماكر على الخير الساذج.</Ar>
                                         </div>
 
                                         <div className="grid md:grid-cols-1 gap-6 overflow-visible">
@@ -1270,6 +1352,7 @@
                                                     <li><strong className="text-slate-800 block">The Embodiment of Evil:</strong> Iago is the complete contrast. He is two-faced and manipulative, existing only to prey on the goodness of others.</li>
                                                     <li><strong className="text-slate-800 block">The Crossing of the Line:</strong> Shakespeare uses Iago to take advantage of Othello's trusting personality. Othello demonstrates how a noble character can cross the line from good into evil when overridden with hate and jealousy.</li>
                                                 </ul>
+                                                <Ar>الصراع الأزلي بين الخير والشر: يمثل عطيل وحبه النبيل لديدمونة الجانب المشرق والخيّر للطبيعة البشرية، بينما يمثل إياجو الشر الخالص والمنافق. عبقرية شكسبير تكمن في توضيح كيف يمكن للشخص النبيل (عطيل) أن يعبر الخط الفاصل نحو الشر المطلق ويصبح مجرماً دموياً عندما يتلاعب أحدهم بنقطة ضعفه ويثير في قلبه الكراهية والغيرة العمياء.</Ar>
                                                 
                                                 <div className="grid md:grid-cols-2 gap-4 mt-6 pt-6 border-t border-slate-100 overflow-visible">
                                                     <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
@@ -1303,10 +1386,13 @@
                                                 <p>I know not where is that Promethean heat</p>
                                                 <p>That can thy light relume.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play Othello by William Shakespeare. Othello is speaking to himself in a soliloquy in Act V, standing over the sleeping Desdemona in her bedchamber. Holding a candle, he prepares to murder his wife, contemplating the permanent finality of extinguishing her life based on Iago's false proofs.",
-                                            "Othello contrasts the physical candle, which can be relit, with the metaphorical light of Desdemona's life, which cannot. However, he completely misses the play's deeper metaphor that understanding is seeing. He relies only on superficial physical vision, seeing her external beauty but lacking the 'Promethean heat' or divine knowledge to recognize her inner innocence. His failure to understand that true knowledge requires more than just physical sight leads directly to his downfall."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play Othello by William Shakespeare. Othello is speaking to himself in a soliloquy in Act V, standing over the sleeping Desdemona in her bedchamber. Holding a candle, he prepares to murder his wife, contemplating the permanent finality of extinguishing her life based on Iago's false proofs.</p>
+                                                <p>Othello contrasts the physical candle, which can be relit, with the metaphorical light of Desdemona's life, which cannot. However, he completely misses the play's deeper metaphor that understanding is seeing. He relies only on superficial physical vision, seeing her external beauty but lacking the 'Promethean heat' or divine knowledge to recognize her inner innocence. His failure to understand that true knowledge requires more than just physical sight leads directly to his downfall.</p>
+                                                <Ar>في الفصل الأخير، يقف عطيل حاملاً شمعة فوق ديدمونة النائمة ليستعد لقتلها. يعقد مقارنة مؤلمة: إذا أطفأ الشمعة يمكنه إعادة إشعالها، ولكن إن أطفأ ضوء حياة ديدمونة فلن توجد قوة سحرية لتعيدها للحياة. يكشف هذا الاقتباس عن اعتماده المدمر على الرؤية البصرية؛ فهو يرى جمالها الخارجي كالشمعة المنيرة، لكن تنقصه "البصيرة القلبية" ليرى نقاء برائتها من الداخل، مما يؤدي لمأساته.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-emerald-500" themeColor="indigo" dialogue={
                                             <>
@@ -1317,10 +1403,13 @@
                                                 <p>But I will wear my heart upon my sleeve</p>
                                                 <p>For daws to pick at; I am not what I am.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play Othello by William Shakespeare. Iago is talking to Roderigo in Act I on a street in Venice. At the very beginning of the play, Iago confesses his deep hatred for Othello after being passed over for a military promotion, freely revealing his deceptive nature to his foolish companion.",
-                                            "This passage establishes Iago's Machiavellian philosophy and subverts the idea that seeing is understanding. While Othello believes that outward appearances perfectly reflect inner truths, Iago treats appearance and reality as opposites, declaring 'I am not what I am.' By using a clothing metaphor, Iago demonstrates that outward visibility can be easily manipulated to hide true internal intentions, making him the perfect villain."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play Othello by William Shakespeare. Iago is talking to Roderigo in Act I on a street in Venice. At the very beginning of the play, Iago confesses his deep hatred for Othello after being passed over for a military promotion, freely revealing his deceptive nature to his foolish companion.</p>
+                                                <p>This passage establishes Iago's Machiavellian philosophy and subverts the idea that seeing is understanding. While Othello believes that outward appearances perfectly reflect inner truths, Iago treats appearance and reality as opposites, declaring 'I am not what I am.' By using a clothing metaphor, Iago demonstrates that outward visibility can be easily manipulated to hide true internal intentions, making him the perfect villain.</p>
+                                                <Ar>في الفصل الأول، يبوح إياجو לרودريجو بحقيقة شخصيته. يضع إياجو قاعدة الشر والمكر الأساسية في المسرحية بجملة "أنا لست ما أبدو عليه". يوضح أنه يمثل الولاء والخضوع ظاهرياً فقط لتحقيق مآربه الشخصية المدمرة. إياجو يكسر قاعدة أن "المظاهر تعكس البواطن"، فهو يرتدي قناع الأمانة ليخدع الجميع بينما قلبه مليء بالحقد القذر.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-rose-500" themeColor="indigo" dialogue={
                                             <>
@@ -1332,10 +1421,13 @@
                                                 <p>He hath, and is again to cope your wife.</p>
                                                 <p>I say, but mark his gesture.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play Othello by William Shakespeare. Iago is talking to Othello in Act IV in Cyprus. Iago has just driven Othello into a jealous trance. He now instructs Othello to hide and watch a staged conversation with Cassio, falsely claiming they will be discussing Desdemona when they are actually discussing Bianca.",
-                                            "This dialogue perfectly illustrates Iago's absolute control over Othello's mind. By acting as a literal stage-manager, Iago controls both what Othello sees and how he interprets it. Because Othello relies entirely on the flawed belief that seeing equals knowing, Iago easily weaponizes this by providing a false context beforehand. Othello's demand for objective 'ocular proof' becomes his fatal weakness."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play Othello by William Shakespeare. Iago is talking to Othello in Act IV in Cyprus. Iago has just driven Othello into a jealous trance. He now instructs Othello to hide and watch a staged conversation with Cassio, falsely claiming they will be discussing Desdemona when they are actually discussing Bianca.</p>
+                                                <p>This dialogue perfectly illustrates Iago's absolute control over Othello's mind. By acting as a literal stage-manager, Iago controls both what Othello sees and how he interprets it. Because Othello relies entirely on the flawed belief that seeing equals knowing, Iago easily weaponizes this by providing a false context beforehand. Othello's demand for objective 'ocular proof' becomes his fatal weakness.</p>
+                                                <Ar>في الفصل الرابع، يلعب إياجو دور المخرج المسرحي العبقري، حيث يطلب من عطيل المنهوس بالغيرة أن يختبئ ليراقب ملامح وحركات كاسيو بينما يتحدث معه. يوهم إياجو عطيل بأن كاسيو يسخر من علاقته بديدمونة (بينما يتحدث في الواقع عن عاهرة). هذا المشهد يؤكد أن الرؤية البصرية البحتة ("أريد دليلاً بَصرياً") يمكن التلاعب بها كلياً إذا تم تشويه السياق المُسبق كما فعل إياجو ببراعة.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-purple-500" themeColor="indigo" dialogue={
                                             <>
@@ -1343,10 +1435,13 @@
                                                 <p>And passion, having my best judgment collied,</p>
                                                 <p>Assays to lead the way.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play Othello by William Shakespeare. Othello is speaking to Iago and Montano in Act II in Cyprus. This moment happens immediately after Cassio's drunken brawl has disturbed the peace. Othello arrives to stop the chaos and angrily demands to know who started the fight.",
-                                            "Othello admits that his passion and anger are beginning to darken his rational judgment and his ability to see the truth clearly. This moment is highly significant because it hands Iago the exact blueprint for Othello's destruction. Iago realizes that if he can overwhelm Othello with blinding passion, Othello's judgment will fail, forcing him to rely entirely on Iago's false interpretations of reality."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play Othello by William Shakespeare. Othello is speaking to Iago and Montano in Act II in Cyprus. This moment happens immediately after Cassio's drunken brawl has disturbed the peace. Othello arrives to stop the chaos and angrily demands to know who started the fight.</p>
+                                                <p>Othello admits that his passion and anger are beginning to darken his rational judgment and his ability to see the truth clearly. This moment is highly significant because it hands Iago the exact blueprint for Othello's destruction. Iago realizes that if he can overwhelm Othello with blinding passion, Othello's judgment will fail, forcing him to rely entirely on Iago's false interpretations of reality.</p>
+                                                <Ar>بعد مشاجرة كاسيو المخمور، يعترف عطيل غاضباً بأن شغفه ودمه الساخن بدءا يسيطران على حكمته وعقله الرزين ويقودانه نحو الظلام. هذا الاعتراف الخطير هو ما منح إياجو "مفتاح تدمير عطيل"؛ فقد أدرك إياجو أنه إذا استطاع تغذية غيرة وعاطفة عطيل بقوة، فإن عقله سيتعطل تماماً، ليقع فريسة سهلة لخداع وتوجيه إياجو.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-amber-500" themeColor="indigo" dialogue={
                                             <>
@@ -1356,29 +1451,38 @@
                                                 <p>That my disports corrupt and taint my business,</p>
                                                 <p>Let housewives make a skillet of my helm.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play Othello by William Shakespeare. Othello is talking to the Duke of Venice and the Senate in Act I. He is defending his request to bring Desdemona with him to the military campaign in Cyprus, assuring the council that his new marriage will not distract him from his duties.",
-                                            "Othello uses a complex falconry metaphor, claiming that love will not 'seel' or sew shut his eyes to blind his military judgment. He relies heavily on the belief that understanding comes from clear vision, proudly asserting that his mind remains perfectly objective and unaffected by passion. Tragically, this represents his fatal hubris, claiming an absolute objectivity that Iago will soon easily dismantle."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play Othello by William Shakespeare. Othello is talking to the Duke of Venice and the Senate in Act I. He is defending his request to bring Desdemona with him to the military campaign in Cyprus, assuring the council that his new marriage will not distract him from his duties.</p>
+                                                <p>Othello uses a complex falconry metaphor, claiming that love will not 'seel' or sew shut his eyes to blind his military judgment. He relies heavily on the belief that understanding comes from clear vision, proudly asserting that his mind remains perfectly objective and unaffected by passion. Tragically, this represents his fatal hubris, claiming an absolute objectivity that Iago will soon easily dismantle.</p>
+                                                <Ar>يدافع عطيل عن قراره باصطحاب ديدمونة معه للحرب ويؤكد للدوق أن عاطفة الحب لن تُغلق عينيه أو تؤثر على حكمه العسكري والعملي. يعكس هذا الاقتباس كبرياء وثقة عطيل الزائدة في قدرته المطلقة على التفرقة بين عمله وعاطفته. المفارقة التراجيدية هي أن هذا الغرور في "عقلانيته" هو ما سيسهل على إياجو هدمه وتعمية بصيرته تماماً بالغيرة.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-indigo-500" themeColor="indigo" dialogue={
                                             <>
                                                 <p><span className="text-indigo-700 font-sans text-xs uppercase tracking-wider font-extrabold mr-2">OTHELLO:</span>My parts, my title, and my perfect soul</p>
                                                 <p>Shall manifest me rightly.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play Othello by William Shakespeare. Othello is speaking to Iago in Act I on the streets of Venice. Iago warns Othello to hide from the angry Brabantio, but Othello refuses to run.",
-                                            "Othello insists that his true, honorable nature is perfectly visible to the world. He believes in an absolute, objective reality where acting rightly guarantees being seen and judged correctly. This shows his deep reliance on the idea that seeing is understanding, a belief Iago will soon use against him."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play Othello by William Shakespeare. Othello is speaking to Iago in Act I on the streets of Venice. Iago warns Othello to hide from the angry Brabantio, but Othello refuses to run.</p>
+                                                <p>Othello insists that his true, honorable nature is perfectly visible to the world. He believes in an absolute, objective reality where acting rightly guarantees being seen and judged correctly. This shows his deep reliance on the idea that seeing is understanding, a belief Iago will soon use against him.</p>
+                                                <Ar>يرفض عطيل الهروب من والد ديدمونة الغاضب ويؤكد بثقة أن تاريخه المجيد و"روحه النقية الخالية من العيوب" كفيلان بإظهار حقيقته النبيلة للناس. يوضح هذا إيمان عطيل الساذج بأن العالم مكان مثالي يمكن للناس فيه أن يقرأوا الشرف من المظهر الخارجي. هذا الإيمان الأعمى بصلاح الناس هو ما سيكسره إياجو بخبث لاحقاً.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-emerald-500" themeColor="indigo" dialogue={
                                             <>
                                                 <p><span className="text-emerald-700 font-sans text-xs uppercase tracking-wider font-extrabold mr-2">DUKE:</span>You must therefore be content to slubber the gloss of your new fortunes with this more stubborn and boisterous expedition.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play Othello by William Shakespeare. The Duke of Venice is speaking to Othello in Act I. He is officially commissioning Othello to leave his new bride and go defend Cyprus against the Turkish fleet.",
-                                            "The Duke fears this difficult military campaign might 'slubber' or besmear Othello's bright reputation. By comparing goodness and reputation to light ('gloss'), this dialogue reinforces the play's metaphor that goodness is light and evil is darkness. It directly anticipates Iago's later plan to turn Desdemona's bright virtue into 'pitch'."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play Othello by William Shakespeare. The Duke of Venice is speaking to Othello in Act I. He is officially commissioning Othello to leave his new bride and go defend Cyprus against the Turkish fleet.</p>
+                                                <p>The Duke fears this difficult military campaign might 'slubber' or besmear Othello's bright reputation. By comparing goodness and reputation to light ('gloss'), this dialogue reinforces the play's metaphor that goodness is light and evil is darkness. It directly anticipates Iago's later plan to turn Desdemona's bright virtue into 'pitch'.</p>
+                                                <Ar>يقوم الدوق بإرسال عطيل للحرب المزعجة، محذراً إياه من أنها قد تُعكر أو "تلطخ" اللمعان والبريق الذي صاحب زفافه السعيد وإنجازاته. استخدام مفردات تخص "التلطيخ واللمعان" يرسخ رمزية المسرحية التي تشبه الخير والشرف بالنور والبريق، بينما يشبه الشر بالظلام والتلطيخ، وهو تماماً ما يهدف إياجو لفعله بتلطيخ سمعة ديدمونة الناصعة بالوحل.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-rose-500" themeColor="indigo" dialogue={
                                             <>
@@ -1387,10 +1491,13 @@
                                                 <p>Poor Cassio's smiles, gestures, and light behaviors</p>
                                                 <p>Quite in the wrong.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play Othello by William Shakespeare. Iago is speaking alone in a soliloquy in Act IV in Cyprus. He is preparing to stage a conversation with Cassio about Bianca while Othello watches secretly from a distance.",
-                                            "Iago explains exactly how he controls what Othello sees and knows. He accurately predicts that Othello's jealousy will cause him to completely misinterpret Cassio's innocent smiles and gestures. This proves that visual evidence is not objective; it can easily be manipulated by a clever stage-manager."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play Othello by William Shakespeare. Iago is speaking alone in a soliloquy in Act IV in Cyprus. He is preparing to stage a conversation with Cassio about Bianca while Othello watches secretly from a distance.</p>
+                                                <p>Iago explains exactly how he controls what Othello sees and knows. He accurately predicts that Othello's jealousy will cause him to completely misinterpret Cassio's innocent smiles and gestures. This proves that visual evidence is not objective; it can easily be manipulated by a clever stage-manager.</p>
+                                                <Ar>في حديث مع النفس، يكشف إياجو عن تفاصيل خطته لتحطيم عقل عطيل. يوضح إياجو أن ابتسامات كاسيو العفوية وحركاته الخفيفة ستترجمها "غيرة عطيل الجاهلة" في دماغه على أنها تأكيد ساخر لخيانة ديدمونة. هذا يعكس قدرة إياجو الفذة على التحكم بكيفية استيعاب عطيل وإدراكه للمواقف البصرية البسيطة وقلب معانيها لتخدم مكيدته.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-purple-500" themeColor="indigo" dialogue={
                                             <>
@@ -1398,10 +1505,13 @@
                                                 <p>And on the proof there is no more but this:</p>
                                                 <p>Away at once with love or jealousy.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play Othello by William Shakespeare. Othello is talking to Iago in Act III in Cyprus. Iago has just begun planting the seeds of doubt about Desdemona's faithfulness, and Othello stubbornly demands real evidence.",
-                                            "Othello proudly boasts that he relies entirely on empirical, visible proof. He firmly believes that understanding comes from seeing, and that once he sees proof, all emotional doubt will vanish. Iago uses this exact mindset against him by providing fake visual proof, which Othello blindly accepts as truth."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play Othello by William Shakespeare. Othello is talking to Iago in Act III in Cyprus. Iago has just begun planting the seeds of doubt about Desdemona's faithfulness, and Othello stubbornly demands real evidence.</p>
+                                                <p>Othello proudly boasts that he relies entirely on empirical, visible proof. He firmly believes that understanding comes from seeing, and that once he sees proof, all emotional doubt will vanish. Iago uses this exact mindset against him by providing fake visual proof, which Othello blindly accepts as truth.</p>
+                                                <Ar>يطلب عطيل بثقة دليلاً مرئياً قاطعاً على شكوك إياجو، مُدّعياً أنه لا يشك إلا بما يراه عياناً، وأنه بمجرد رؤية الدليل سيتخذ قراره بإنهاء الحب والغيرة معاً بلا رجعة. هذا التعنت والاعتماد الكلي على "الدليل البصري" هو السلاح الذي سيرتد إلى صدره؛ فإياجو يعلم تماماً كيف يُصنّع له دليلاً بصرياً مزيفاً يقوده للتصديق الأعمى وسفك الدماء.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-amber-500" themeColor="indigo" dialogue={
                                             <>
@@ -1409,10 +1519,13 @@
                                                 <p>They dare not show their husbands; their best conscience</p>
                                                 <p>Is not to leave't undone, but kept unknown.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play Othello by William Shakespeare. Iago is speaking to Othello in Act III in Cyprus. He is exploiting Othello's status as an outsider by explaining how native Venetian women secretly behave.",
-                                            "Iago uses the language of vision to feed Othello's fears. He claims that Venetian women are experts at hiding their true actions from their husbands. This completely shatters Othello's belief that visible appearances match reality, making him paranoid that Desdemona is deceiving him."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play Othello by William Shakespeare. Iago is speaking to Othello in Act III in Cyprus. He is exploiting Othello's status as an outsider by explaining how native Venetian women secretly behave.</p>
+                                                <p>Iago uses the language of vision to feed Othello's fears. He claims that Venetian women are experts at hiding their true actions from their husbands. This completely shatters Othello's belief that visible appearances match reality, making him paranoid that Desdemona is deceiving him.</p>
+                                                <Ar>يستغل إياجو شعور عطيل بأنه غريب عن ثقافة البندقية، ويزرع في رأسه حقيقة سامة: "أن نساء البندقية محترفات في الخداع وإخفاء الخيانات عن أزواجهن". هذه الفكرة تدمر ثقة عطيل الساذجة في ديدمونة وفي إمكانية تصديقه لما يراه؛ حيث يُوهمه إياجو بأن عفّة زوجته الظاهرية هي مجرد إخفاء لخطايا خفية، فتشتعل نيران الشك والبارانويا داخله.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-indigo-500" themeColor="indigo" dialogue={
                                             <>
@@ -1420,10 +1533,13 @@
                                                 <p>'Tis to his virtue a just equinox,</p>
                                                 <p>The one as long as th'other.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play Othello by William Shakespeare. Iago is speaking to Montano, the governor of Cyprus, in Act II. Iago has just purposely gotten Cassio drunk and is now framing him as an irresponsible alcoholic.",
-                                            "Iago frames Cassio's drunkenness visually, telling Montano to 'see his vice' as an exact opposite to his virtue, like night and day. By controlling the chaotic scene that Montano witnesses, Iago dictates what Montano believes about Cassio's character, successfully getting Cassio fired."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play Othello by William Shakespeare. Iago is speaking to Montano, the governor of Cyprus, in Act II. Iago has just purposely gotten Cassio drunk and is now framing him as an irresponsible alcoholic.</p>
+                                                <p>Iago frames Cassio's drunkenness visually, telling Montano to 'see his vice' as an exact opposite to his virtue, like night and day. By controlling the chaotic scene that Montano witnesses, Iago dictates what Montano believes about Cassio's character, successfully getting Cassio fired.</p>
+                                                <Ar>يُوهِم إياجو حاكم قبرص (مونتانو) بأن إفراط كاسيو في الشرب هو الرذيلة الدائمة التي توازي فضائله. بتأطير هذا الموقف الاستثنائي كـ "دليل بَصري" على سوء سلوك كاسيو المعتاد، ينجح إياجو في التلاعب بنظرة الحاكم للأمور وتوجيهه لعزل كاسيو، مُثبتاً قدرته الفذة على تحريف وتوجيه المشاهد والأحداث لصالح مخططاته.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-emerald-500" themeColor="indigo" dialogue={
                                             <>
@@ -1431,10 +1547,13 @@
                                                 <p>Prizes the virtue that appears in Cassio</p>
                                                 <p>And looks not on his evils. Is not this true?</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play Othello by William Shakespeare. Montano is speaking to Iago in Act II in Cyprus. He is reacting to Cassio's drunken behavior, which Iago has carefully staged for him to witness.",
-                                            "Montano uses metaphors of vision to question Othello's judgment as a leader. He assumes Othello is blinded by Cassio's good traits and fails to 'see' his flaws. This proves that Iago's staged illusions are working perfectly, tricking the authorities into trusting what they see over what they actually know."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play Othello by William Shakespeare. Montano is speaking to Iago in Act II in Cyprus. He is reacting to Cassio's drunken behavior, which Iago has carefully staged for him to witness.</p>
+                                                <p>Montano uses metaphors of vision to question Othello's judgment as a leader. He assumes Othello is blinded by Cassio's good traits and fails to 'see' his flaws. This proves that Iago's staged illusions are working perfectly, tricking the authorities into trusting what they see over what they actually know.</p>
+                                                <Ar>يتساءل مونتانو هنا عما إذا كان عطيل أعمى أو مخدوعاً بفضائل كاسيو الظاهرية ولا يرى حقيقة طيشه (والذي افتعله إياجو أصلاً). هذا الاقتباس يؤكد نجاح مؤامرة إياجو بنسبة 100٪؛ فقد استطاع خداع شخصية ذات منصب رفيع (مونتانو) لدرجة جعله ينتقد ذكاء وبصيرة البطل (عطيل) بدلاً من أن يشكك في الموقف المفتعل نفسه.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-rose-500" themeColor="indigo" dialogue={
                                             <>
@@ -1444,10 +1563,13 @@
                                                 <p>She shall undo her credit with the Moor.</p>
                                                 <p>So will I turn her virtue into pitch.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play Othello by William Shakespeare. Iago is speaking alone in a soliloquy in Act II in Cyprus. He is revealing his evil plan to use Desdemona's kind attempts to help Cassio against her.",
-                                            "Iago vows to reverse the metaphor that goodness equals light. By turning Desdemona's bright virtue into dark 'pitch,' he plans to completely manipulate Othello's perception. He will poison Othello's mind so that every good deed Desdemona does will look like visual proof of her betrayal."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play Othello by William Shakespeare. Iago is speaking alone in a soliloquy in Act II in Cyprus. He is revealing his evil plan to use Desdemona's kind attempts to help Cassio against her.</p>
+                                                <p>Iago vows to reverse the metaphor that goodness equals light. By turning Desdemona's bright virtue into dark 'pitch,' he plans to completely manipulate Othello's perception. He will poison Othello's mind so that every good deed Desdemona does will look like visual proof of her betrayal.</p>
+                                                <Ar>يتعهد إياجو بخبث أن يصب "سمّ الشك" في أذن عطيل، مُستغلاً طيبة ديدمونة ودفاعها النبيل عن كاسيو كأداة لتشويه سمعتها. هنا تتجسد عبقرية الشر عند إياجو؛ فهو يقرر تحويل أفضل فضائلها ونقائها (النور المشرق) إلى "قارٍ أسود ولطخات قاتمة"، بحيث كلما حاولت فعل الخير زادت شكوك عطيل فيها وانهارت ثقته.</Ar>
+                                            </>
+                                        } />
 
                                         <QuoteCard borderSide="border-purple-500" themeColor="indigo" dialogue={
                                             <>
@@ -1459,10 +1581,13 @@
                                                 <p>Some horrible conceit. If thou dost love me,</p>
                                                 <p>Show me thy thought.</p>
                                             </>
-                                        } examParagraphs={[
-                                            "This quotation is from the play Othello by William Shakespeare. Othello is speaking to Iago in Act III in Cyprus. Iago is pretending to hide dark, terrible suspicions about Cassio and Desdemona to make Othello curious and paranoid.",
-                                            "Othello frantically demands that Iago 'show' him his hidden thoughts. This proves that Othello still believes thoughts and truths can be seen objectively. He completely falls into Iago's trap, desperately begging to see the very illusions that will destroy his mind and marriage."
-                                        ]} />
+                                        } examParagraphs={
+                                            <>
+                                                <p>This quotation is from the play Othello by William Shakespeare. Othello is speaking to Iago in Act III in Cyprus. Iago is pretending to hide dark, terrible suspicions about Cassio and Desdemona to make Othello curious and paranoid.</p>
+                                                <p>Othello frantically demands that Iago 'show' him his hidden thoughts. This proves that Othello still believes thoughts and truths can be seen objectively. He completely falls into Iago's trap, desperately begging to see the very illusions that will destroy his mind and marriage.</p>
+                                                <Ar>يطلب عطيل بيأس أن يرى الأفكار المظلمة والموحشة التي يلمّح إليها إياجو وتخفيها كلماته. هذه الاستعطافات والمحاولات اليائسة لـ "رؤية الأفكار" تؤكد مدى وقوع عطيل في الفخ النفسي لإياجو. إن ظن عطيل الخاطئ بأن الأفكار والنوايا قابلة للرؤية والكشف البصري هو ذات الوهم الذي سيُسلمه مستقبلاً للتصديق الأعمى للأدلة المزيفة.</Ar>
+                                            </>
+                                        } />
 
                                     </div>
                                 )}
@@ -1489,6 +1614,7 @@
                                                 <p className="text-slate-600 text-sm leading-relaxed">
                                                     Written in 1888, <em>Miss Julie</em> is a full-length <Vocab word="naturalistic" simple="realistic/deterministic" /> drama in one act. The play substitutes conventional acts with interludes like a peasant dance and a pantomime, exploring how heredity and social factors determine the characters' futures.
                                                 </p>
+                                                <Ar>أوجوست ستريندبرغ: كاتب سويدي ورائد في المدرسة الطبيعية. مسرحية الآنسة جولي (1888) هي دراما تُعرض في فصل واحد بلا توقف، وتعالج صراع الطبقات، وغريزة البقاء، وتأثير الوراثة والتربية والظروف المجتمعية الحتمية على تحطيم وإذلال الإنسان بشكل قاسٍ وحقيقي.</Ar>
                                             </div>
                                         </div>
 
@@ -1498,6 +1624,7 @@
                                                     <>
                                                         <p>The play takes place in the kitchen of the Count's manor on Midsummer's Eve. <strong>Jean</strong>, the valet, tells <strong>Christine</strong> the cook about Miss Julie's wild behavior, noting her fiancé abandoned her after she forced him to jump over her riding whip.</p>
                                                         <p>Miss Julie enters and boldly invites Jean to dance. Despite Jean warning her of local gossip, she insists. A pantomime ensues as Christine cleans, followed by Jean and Julie flirting until he mockingly kisses her foot.</p>
+                                                        <Ar>تقع أحداث المسرحية بالكامل في مطبخ قصر الكونت (والد جولي) خلال ليلة الاحتفال بمنتصف الصيف. يتحدث الخادم الذكي "جان" مع خطيبته الطباخة "كريستين" عن السلوك المتهور والجنوني للآنسة "جولي"، وكيف أنها أجبرت خطيبها السابق على القفز فوق سوطها ككلب مما أدى لانفصالهما. فجأة تدخل جولي المطبخ، وتكسر كل الحواجز الطبقية بجرأة وتحدٍ، مُجبرةً الخادم "جان" على الرقص معها والتقرب منها متجاهلة تحذيراته المبطنة حول كلام الناس والفروق الاجتماعية بينهما.</Ar>
                                                     </>
                                                 } />
 
@@ -1505,6 +1632,7 @@
                                                     <>
                                                         <p>They share contrasting dreams: Julie dreams of climbing down from a pillar, while Jean dreams of climbing up a tree. Jean tells a childhood story of sneaking into a "Turkish pavilion" (an outhouse) and watching Julie walk on a rose terrace, claiming he was lovesick and attempted suicide.</p>
                                                         <p>When the peasant guests approach singing a dirty song about them, Jean and Julie flee into his room, where the implication is that they have sex.</p>
+                                                        <Ar>يتبادل جان وجولي أحلامهما المتناقضة التي تكشف عن دواخلهما؛ جولي تحلم بالسقوط من أعلى عمود (في إشارة لرغبتها الباطنية في التحرر من قيود طبقتها والنزول للقاع)، بينما يحلم جان بتسلق شجرة عالية (في إشارة لطموحه للارتقاء الاجتماعي). للإيقاع بها، يؤلف جان قصة رومانسية كاذبة حول كونه كان مغرماً بها في طفولته لدرجة محاولة الانتحار. وعندما يقترب الفلاحون السكارى من المطبخ وهم يغنون أغنية تلمح لعلاقة بينهما، يقنعها جان بالاختباء في غرفته لحماية سمعتها، وهناك تقع بينهما العلاقة الجنسية التي ستدمر حياتها.</Ar>
                                                     </>
                                                 } />
 
@@ -1512,6 +1640,7 @@
                                                     <>
                                                         <p>Returning to the kitchen, the power dynamic has reversed. Julie is distraught. Gesturing to the rumor-mongering crowd, Jean declares it is impossible to stay at the manor.</p>
                                                         <p>Jean dreams of traveling to northern Italy to open a hotel, asking Julie to finance it. When she admits she has no money, Jean abruptly cancels the plan, calls her a whore, and reveals that his romantic story of the rose terrace was a complete lie.</p>
+                                                        <Ar>بعد خروجهما من الغرفة، تنقلب موازين القوى تماماً؛ تفقد جولي مكانتها الأرستقراطية وتتحول لامرأة منكسرة ومحطمة، بينما يتحول جان إلى شخصية متسلطة ووقحة. يعرض عليها جان خطة للهروب معاً إلى إيطاليا لفتح فندق مستخدمين أموالها. ولكن عندما تعترف جولي بأنها لا تملك أي ثروة شخصية للإنفاق على هذا المشروع، يسقط جان قناعه الرومانسي، ويهينها بأبشع الألفاظ، ويعترف صراحة بأن كل قصص حبه لها كانت مجرد أكاذيب للوصول لغايته.</Ar>
                                                     </>
                                                 } />
 
@@ -1519,6 +1648,7 @@
                                                     <>
                                                         <p>Julie explains her man-hating upbringing, revealing her mother ruined the estate and set a fire. After Christine enters, disgusted by their affair, and leaves for church, Julie prepares to flee with her pet canary, Serena.</p>
                                                         <p>Jean insists she leave the bird and brutally decapitates it on a chopping block. Mesmerized and horrified, Julie screams <em>"Kill me too!"</em> and flies into a violent rage against Jean and his entire class.</p>
+                                                        <Ar>تحاول جولي تبرير تخبطها وانحرافها النفسي بسرد قصة طفولتها؛ كيف أن والدتها كانت تكره الرجال والتقاليد، وربتها بطريقة مشوهة لتكون نصف رجل ونصف امرأة. تنهار جولي أكثر وتقرر الهرب بمفردها مصطحبة عصفورها الصغير (الكناري). لكن جان يرفض أخذ العصفور معهما، ويقوم بقطع رأسه بوحشية وبدم بارد على لوح التقطيع في المطبخ. هذا العنف الصادم يدمر ما تبقى من عقل جولي، فتصاب بنوبة هستيرية من الغضب والصراخ، وتتمنى الموت وتصب لعناتها على جان وكل الطبقة الدنيا التي يمثلها.</Ar>
                                                     </>
                                                 } />
 
@@ -1526,6 +1656,7 @@
                                                     <>
                                                         <p>Julie begs Christine for help to flee and open the hotel, but Christine refuses. Utterly defeated, Julie picks up Jean's razor. Suddenly, the Count's bell rings twice.</p>
                                                         <p>Immobilized by the sound of his master's bell, Jean's bravado vanishes. Julie asks him to hypnotize her and tell her what to do. Jean hands her the razor and commands her to her death, and she walks out the door to commit suicide.</p>
+                                                        <Ar>في قمة يأسها، تتوسل جولي للطباخة كريستين لمساعدتها، لكن كريستين ترفض بقسوة متمسكة بقيمها الدينية والطبقية. فجأة، يُسمع صوت جرس الكونت (والد جولي) معلناً عودته للقصر. هذا الصوت يُرعب جان ويحوله في ثوانٍ من رجل متسلط إلى خادم جبان يرتجف خوفاً من سيده. جولي، التي فقدت كل إرادتها وشرفها ولم يعد لديها مفر من الفضيحة، تطلب من جان أن يُنوّمها مغناطيسياً ويأمرها بما يجب فعله. يناولها جان شفرة الحلاقة ويأمرها بالانتحار، فتخرج جولي بهدوء لتنهي حياتها وتتخلص من العار.</Ar>
                                                     </>
                                                 } />
                                             </div>
@@ -1557,6 +1688,7 @@
                                                     <p><strong>Background:</strong> The twenty-five-year-old tragic heroine. She lacks confidence in her identity, the result of a confused and genderless upbringing instilled by her mother.</p>
                                                     <p><strong>Personality:</strong> She attempts to be dominant and flirts openly with the valet, acting out her many insecurities. Her dream of falling from a pillar reflects her subconscious urge to descend.</p>
                                                     <p><strong>The Collapse:</strong> After being seduced, she completely falls to pieces when trying to reassert her dominance. Terrified of her father's judgment, she finally sacrifices herself to the power of suggestion the valet uses over her weak will.</p>
+                                                    <Ar>الآنسة جولي (Miss Julie): الأرستقراطية الساقطة (25 عاماً). فتاة معقدة نفسياً نشأت على كراهية الرجال وتخبط في هويتها الجندرية بسبب والدتها المريضة. تُظهر تمرداً وغروراً ظاهرياً وتتعمد إذلال الرجال والعبث بالحدود الطبقية بإغواء خادمها. وبمجرد وقوع الخطأ الذي ينزع عنها غطاء الشرف الأرستقراطي، تنهار تماماً، وتتحول لعبدة ذليلة لإرادة جان لتنهي حياتها خوفاً من الفضيحة ووالدها الكونت.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Jean" role="The Ambitious Valet" icon={Briefcase} color="rose" details={
@@ -1564,6 +1696,7 @@
                                                     <p><strong>Background:</strong> The manor's thirty-year-old valet. He has a small amount of sophisticated work experience but remains in a menial position.</p>
                                                     <p><strong>Personality:</strong> Self-preservation is key to his character. He takes advantage of a coincidence of need to seduce Julie. However, his humble origins render him completely servile the moment the Count's bell rings.</p>
                                                     <p><strong>Manipulation:</strong> When he realizes Julie has no money, he discards their plans to protect his job. He uses his psychological and hypnotic powers of suggestion to force her into suicide, ensuring his own survival.</p>
+                                                    <Ar>جان (Jean): الخادم الطموح (30 عاماً). يمتلك ثقافة مكتسبة ولباقة وذكاءً حاداً وطموحاً للارتقاء لمصاف السادة. هو متلاعب أناني وبراغماتي؛ يستغل تخبط جولي للإيقاع بها بكلماته المعسولة الكاذبة، ثم ينقلب عليها ليعاملها باحتقار وإذلال عنيف. لكنه في النهاية يفشل في تخطي طبقته الأصلية؛ فصوت جرس سيده الكونت كفيل بكسر شوكته وإعادته خادماً خائفاً ممتثلاً للأوامر.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Christine" role="The Pragmatic Cook" icon={Home} color="rose" details={
@@ -1571,6 +1704,7 @@
                                                     <p><strong>Background:</strong> The manor's thirty-five-year-old cook and Jean's fiancée. Her union with Jean seems more casual than serious.</p>
                                                     <p><strong>Personality:</strong> She is religious, and her moral code (along with jealousy) leads her to strongly disapprove of Jean and Julie's reckless behavior.</p>
                                                     <p><strong>Strength:</strong> She doesn't believe their unrealistic plans for escape. She alone has the true strength and determination to leave on her own to save her self-respect, completely rejecting Julie's desperate pleas for help.</p>
+                                                    <Ar>كريستين (Christine): الطباخة وخطيبة جان. تمثل القيم الراسخة المحافظة والدين والطبقة العاملة الراضية بواقعها. هي واقعية تامة لا تنطلي عليها أحلام جان الواهمة ولا تعاطفها انكسارات جولي الفاسدة. رفضها الحاسم لمساعدة جولي يمثل رفض المجتمع لتقبل التجاوزات الطبقية والأخلاقية، وهي الوحيدة التي تنجو وتغادر بصورة مستقرة.</Ar>
                                                 </>
                                             } />
                                         </div>
@@ -1584,6 +1718,9 @@
                                             <div className="mb-4">
                                                 Their relationship is not based on love, but on control, dominance, and psychological manipulation. Each character tries to gain superiority over the other using different weapons.
                                             </div>
+                                            <Ar title="السلطة والحرب النفسية">
+                                                لا توجد رومانسية في علاقة جولي وجان، بل هي صراع مرير للسيطرة والتفوق النفسي على الآخر باستخدام مختلف الأسلحة.
+                                            </Ar>
 
                                             <ComparisonTable title="Weapons of Warfare" leftTitle="Miss Julie (Social)" rightTitle="Jean (Psychological)" color="rose" rows={[
                                                 {
@@ -1597,6 +1734,7 @@
                                                     </div>
                                                 }
                                             ]} />
+                                            <Ar>قارن الكاتب بين سلطة جولي الاجتماعية الهشة والمبنية على اللقب الأرستقراطي فقط، وبين ذكاء جان النفسي والمستمد من قوة التلاعب وغريزة البقاء لدى الطبقات الكادحة، والذي ينجح في قلب المعادلة وتحطيم سيدته بالكامل.</Ar>
                                         </Section>
 
                                         <div className="grid md:grid-cols-2 gap-6 overflow-visible">
@@ -1616,6 +1754,10 @@
                                                 </ul>
                                             } />
                                         </div>
+                                        <Ar>
+                                            **انهيار الحواجز الطبقية:** الطبقة الأرستقراطية القديمة في حالة تداعي واضمحلال وضعف كجولي، بينما الطبقة العاملة طموحة وتناضل للبقاء والارتقاء كجان.<br/><br/>
+                                            **الغريزة مقابل التحضر:** التحضر والقواعد ليست إلا قشرة هشة زائفة فوق الغرائز البشرية البحتة المتمثلة في الشهوة والسيطرة وصراع البقاء. ليلة منتصف الصيف بكل طقوسها الوثنية القديمة هي العامل الذي يذيب تلك القشرة ويفجر الصراع الحيواني بداخلهم.
+                                        </Ar>
                                     </div>
                                 )}
 
@@ -1641,6 +1783,7 @@
                                                     <p className="text-sm text-rose-800">The aristocratic world represents artificial appearance and status, while the kitchen represents raw, physical reality, work, and survival.</p>
                                                 </div>
                                             </div>
+                                            <Ar>رمزية المطبخ: ليس مجرد مكان للطبخ، بل هو معترك الصراع الطبقي والنفسي الدنيء. نزول جولي من الطوابق العلوية (الأرستقراطية الوهمية والأقنعة المجتمعية) إلى المطبخ (القاع، الطبقة الكادحة، والغرائز المادية وصراع البقاء الأساسي) هو تجريد متكامل لسلطتها وحرمانها من درعها الطبقي المتمثل في لقبها وتواجدها المألوف، مما يسهل لجان اصطيادها نفسياً لأنه في بيئته وملعبه الحقيقي الذي يفهمه جيداً.</Ar>
                                         </Section>
                                     </div>
                                 )}
@@ -1651,6 +1794,7 @@
                                         <div className="text-center mb-10">
                                             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">Critical Analysis</h2>
                                             <p className="text-slate-500 text-lg">Strindberg's masterpiece of naturalistic theatre.</p>
+                                            <Ar>التحليل النقدي: تحفة ستريندبرغ في المسرح الطبيعي والحتمي.</Ar>
                                         </div>
 
                                         <Section title="Psychological Breakdown" subtitle="The Identity Crisis" icon={BrainCircuit} color="rose">
@@ -1662,6 +1806,9 @@
                                                     <li><strong><span className="text-rose-700">Total Defeat:</span></strong> Her mind fills with shame and helplessness. Jean's final control over her reflects her total psychological collapse, destroyed by social pressure and internal confusion.</li>
                                                 </ul>
                                             </div>
+                                            <Ar title="أزمة الهوية والانهيار النفسي">
+                                                يوظف الكاتب المدرسة الطبيعية لإظهار أن تصرفات جولي لم تكن خياراً حراً، بل هي نتيجة حتمية وبيولوجية وتنشئة مجتمعية فاسدة من أمها. هي محاصرة بشدة بين رغبتها في السلطة الذكورية وقيود المجتمع التي تحاسبها كامرأة. عند سقوطها وخطيئتها، تكتشف أنها فقدت عالمها الأرستقراطي ولن تنتمي لعالم الخدم الدنيء أبداً، فتقع في شباك عار مدمر يحطم كل مقاومة بداخلها ويسلمها للإيحاء النفسي المنوّم من قبل خادمها الذي يدفعها لتدمير نفسها.
+                                            </Ar>
                                         </Section>
                                     </div>
                                 )}
@@ -1702,6 +1849,7 @@
                                                 <p className="text-slate-600 text-sm leading-relaxed">
                                                     <em>The Taming of the Shrew</em> is a Shakespearean comedy about Petruchio, a man who marries the headstrong, "shrewish" Katherina (Kate) for her fortune, then uses psychological tactics and deprivation to "tame" her into an obedient wife. While she submits, her sister Bianca marries for love, and the play ends with a banquet demonstrating Kate's total transformation.
                                                 </p>
+                                                <Ar>ويليام شكسبير: "ترويض الشرسة" هي كوميديا مسرحية تدور أحداثها حول "بتروكيو" الشاب الطامع في الثروة الذي يتزوج من الفتاة الغنية وسليطة اللسان والمتمردة "كاثرينا". يستخدم معها حيلاً نفسية عنيفة من تجويع وسلب للإرادة وتناقض متعمد بغرض "ترويضها" وإجبارها على الطاعة لتكون زوجة مثالية وخاضعة للتقاليد.</Ar>
                                             </div>
                                         </div>
 
@@ -1711,6 +1859,7 @@
                                                     <>
                                                         <p>In the English countryside, a poor drunken tinker named <strong>Christopher Sly</strong> becomes the target of a prank by a local lord. The lord's men dress Sly in finery and convince him he is a nobleman who has been insane for years.</p>
                                                         <p>Sly accepts this when he hears of his "wife" (a pageboy in disguise). A troupe of actors arrives to present a play for his entertainment—this play makes up the main story of <em>The Taming of the Shrew</em>.</p>
+                                                        <Ar>تبدأ المسرحية بمقدمة كوميدية (مقلب) يقيمه لورد غني ضد رجل فقير وسكير يُدعى "كريستوفر سلاي" بعد أن وجده نائماً في الشارع. يقوم رجال اللورد بتلبيس سلاي ملابس أمراء فاخرة، وعندما يستيقظ، يوهمونه بأنه لورد عظيم كان يعاني من الجنون وفقدان الذاكرة لسنوات، وأن له زوجة مطيعة (وهي في الواقع خادم يتنكر بزي امرأة). لتكتمل الخدعة، يتم استدعاء فرقة مسرحية لتقديم عرض للترفيه عن هذا "اللورد" المزيف. المسرحية التي يشاهدها سلاي هي القصة الأساسية التي نعرفها باسم "ترويض الشرسة".</Ar>
                                                     </>
                                                 } />
 
@@ -1718,6 +1867,7 @@
                                                     <>
                                                         <p>In Padua, <strong>Lucentio</strong> arrives for university but instantly falls in love with <strong>Bianca</strong>. However, her wealthy father, <strong>Baptista</strong>, declares Bianca cannot marry until her older sister, the ill-tempered <strong>Katherine</strong>, is wed.</p>
                                                         <p>Lucentio and another suitor, Hortensio, disguise themselves as tutors to court Bianca secretly, while Tranio disguises himself as Lucentio to officially bid for her hand. Meanwhile, <strong>Petruchio</strong> arrives from Verona seeking a rich wife and agrees to marry Katherine sight unseen for her fortune.</p>
+                                                        <Ar>في مدينة بادوا، يصل الشاب "لوسينتيو" لاستكمال دراسته، لكنه يقع في حب الفتاة الجميلة والرقيقة "بيانكا" من النظرة الأولى. المشكلة أن والدها الثري "بابتيستا" وضع شرطاً صارماً: لن تتزوج بيانكا حتى تتزوج أختها الكبرى "كاثرينا"، وهي فتاة متمردة ومعروفة بلسانها السليط وغضبها الدائم، مما ينفر الخطاب منها. يتنكر لوسينتيو وخاطب آخر يُدعى "هورتينسيو" في هيئة معلمين للتقرب من بيانكا سراً. في هذه الأثناء، يصل "بتروكيو" باحثاً عن الثروة والمال فقط، ويوافق على الزواج من كاثرينا بمجرد علمه بثروة والدها الضخمة، متجاهلاً شخصيتها الشرسة.</Ar>
                                                     </>
                                                 } />
 
@@ -1725,6 +1875,7 @@
                                                     <>
                                                         <p>Petruchio engages Katherine in a tremendous duel of words, twisting her insults and falsely telling Baptista she has consented. On Sunday, Petruchio is late to his own wedding, finally arriving in ridiculous clothes on a broken-down horse.</p>
                                                         <p>After forcing Katherine to leave before the wedding feast, Petruchio takes her to his country house. He begins "taming" her by depriving her of food and sleep, pretending it is out of deep love because the food and bed are supposedly inferior.</p>
+                                                        <Ar>يلتقي بتروكيو بكاثرينا ويدخل معها في معركة كلامية عنيفة، حيث يتجاهل إهاناتها ويرد عليها ببرود ومكر، ثم يكذب على والدها مدعياً أنها وافقت على الزواج منه بحب. وفي يوم الزفاف، يتعمد بتروكيو إهانة كاثرينا بشكل علني؛ فيصل متأخراً جداً، ويرتدي ملابس رثة ومضحكة، ويتصرف بهمجية أثناء المراسم. وبمجرد انتهاء الزفاف، يجبرها على المغادرة معه فوراً قبل حتى أن تحضر حفل زفافها الخاص. يأخذها لمنزله الريفي ويبدأ هناك خطته القاسية لـ "ترويضها" كما تُروّض الصقور البرية.</Ar>
                                                     </>
                                                 } />
 
@@ -1732,6 +1883,7 @@
                                                     <>
                                                         <p>In Padua, Lucentio wins Bianca's heart. Tranio secures Baptista's approval by proposing a huge sum of money, tricking a passing pedant into playing Lucentio's father to confirm the funds. Amidst the comedic confusion of the real father's arrival, Lucentio and Bianca elope.</p>
                                                         <p>On the road back to Padua, Petruchio forces Katherine to agree to absurdities—calling the sun the moon and an old man a young maiden. Broken and exhausted, Katherine's willfulness dissipates, and she submits completely.</p>
+                                                        <Ar>يستخدم بتروكيو أسلوب التعذيب النفسي والجسدي المغلف بـ "الحب". فهو يحرم كاثرينا من الطعام والنوم، متظاهراً بأنه يفعل ذلك لأن الطعام غير مطهو جيداً والفراش ليس مريحاً بما يليق بها! من جهة أخرى، ينجح لوسينتيو في كسب قلب بيانكا والهرب معها ليتزوجا سراً. أثناء عودة بتروكيو وكاثرينا إلى بادوا، يبلغ الترويض ذروته عندما يجبر بتروكيو كاثرينا المنهكة على الموافقة على تصريحات عبثية تماماً (مثل أن تسمي الشمس قمراً، أو تشير لرجل عجوز على أنه فتاة شابة). تدرك كاثرينا أن معارضته تجلب لها العذاب، فتستسلم تماماً لجنونه وتوافقه على كل شيء لتنال الراحة.</Ar>
                                                     </>
                                                 } />
 
@@ -1739,6 +1891,7 @@
                                                     <>
                                                         <p>At a banquet celebrating three marriages (Lucentio/Bianca, Petruchio/Kate, and Hortensio/a Widow), the men wager on whose wife is the most obedient.</p>
                                                         <p>Everyone expects Bianca to win, but she refuses to obey the summons. Katherine comes immediately. Petruchio orders her to explain a wife's duty, and she gives a long speech advocating absolute loyalty and submission to husbands. Petruchio wins an astonishing victory, and the couple leaves to go to bed.</p>
+                                                        <Ar>تُختتم المسرحية بوليمة كبرى تجمع ثلاث زيجات. خلال الحفل، يتحدى الرجال الثلاثة بعضهم البعض في رهان مالي حول "من يمتلك الزوجة الأكثر طاعة". يتوقع الجميع أن تفوز بيانكا الرقيقة، لكن المفاجأة تقع عندما ترفض بيانكا الاستجابة لنداء زوجها. في المقابل، تأتي كاثرينا فوراً بمجرد أن يطلبها بتروكيو. يطلب منها بتروكيو أن تشرح للزوجات الأخريات واجبات الزوجة، فتلقي كاثرينا خطاباً درامياً طويلاً تؤكد فيه على خضوع المرأة المطلق وطاعتها لزوجها، ليفوز بتروكيو بالرهان، وسط جدل مستمر بين النقاد حول ما إذا كانت كاثرينا قد تروضت حقاً أم أنها تتلاعب بالجميع.</Ar>
                                                     </>
                                                 } />
                                             </div>
@@ -1769,42 +1922,49 @@
                                                 <>
                                                     <p><strong>Background:</strong> A man from Verona who comes to Padua with one purpose: to marry into money. He agrees to woo Katherine for her fortune.</p>
                                                     <p><strong>The Tamer:</strong> After the wedding, Petruchio sets about "taming" Katherine by treating her harshly, using extreme psychological and physical manipulation (denying her food and sleep), and pretending to have violent mood swings to mirror her own behavior.</p>
+                                                    <Ar>بتروكيو: صائد الجوائز الوافد من فيرونا بهدف وحيد وهو الزواج من فتاة ثرية، غير مبالٍ بسوء سمعتها. يعتمد طريقة "ترويض الصقور البرية" لتطويع زوجته الشرسة كاثرينا، باستخدام الحرمان والقسوة المغلفة بالاهتمام، ليجبرها تدريجياً على التنازل عن شخصيتها المستقلة والرضوخ التام لمطالبه العبثية لتستقر حياتها.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Katherine" role="The 'Shrew'" icon={Zap} color="amber" details={
                                                 <>
                                                     <p><strong>Background:</strong> The elder of Baptista Minola's two daughters, notorious for her shrewish, hot-tempered behavior, which makes finding a willing husband difficult.</p>
                                                     <p><strong>The Transformation:</strong> Initially dismayed and angered by Petruchio's rude behavior, she puts up a mighty struggle. However, under his intense psychological conditioning, she eventually gives in and submits to his taming efforts.</p>
+                                                    <Ar>كاثرينا (الشرسة): الابنة الكبرى الغاضبة والمتمردة بقوة على القيود الذكورية والمجتمع المادي. هي ذكية ولديها حضور قوي وتستخدم لسانها السليط للدفاع عن نفسها ضد تحويلها لسلعة تجارية. في النهاية تتحطم دفاعاتها وتتحول بطريقة مثيرة للجدل للزوجة المثالية الخاضعة والمدافعة بقوة عن حقوق الأزواج على زوجاتهم.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Bianca" role="The Mild Sister" icon={Sparkles} color="amber" details={
                                                 <>
                                                     <p><strong>Background:</strong> The younger daughter of Baptista. She is the opposite of her sister—sweet, mild, studious, and loves books and music.</p>
                                                     <p><strong>The Suitors' Prize:</strong> She is highly desired by many suitors. She initially doubts Lucentio but eventually agrees to marry him in secret. However, at the final banquet, she refuses to obey his commands, revealing a hidden stubborn streak.</p>
+                                                    <Ar>بيانكا: الاخت الصغرى الرقيقة والناعمة التي يتسابق الجميع لخطبتها لأنها تظهر كأنها الزوجة التقليدية المطيعة والمثالية. ومع ذلك، يكشف الفصل الأخير أنها في الواقع عنيدة ومخادعة؛ فهي تتجاهل أوامر زوجها في وليمة الرهان، مما يكسر الصورة النمطية البريئة عنها ويثبت أنها تجيد التمثيل على الرجال.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Baptista Minola" role="The Wealthy Merchant" icon={Briefcase} color="amber" details={
                                                 <>
                                                     <p><strong>Background:</strong> A rich Paduan who insists on marrying off his elder daughter before Bianca can be courted.</p>
                                                     <p><strong>The Businessman:</strong> Although affable, he is oblivious to his daughters' real wishes (mistaking Kate's tears of anger for disappointment). He arranges marriages strictly based on money, viewing the man who can offer the biggest dower as the ideal son-in-law.</p>
+                                                    <Ar>بابتيستا: الأب الثري. يعامل الزواج كتجارة ومزايدة بحتة محاولاً تأمين أكبر مهر مادي لبناته. قراره الأناني بمنع زواج ابنته الصغرى حتى تتزوج الكبرى غير المرغوبة (كاثرينا) هو المحرك الأساسي لأحداث التخفي والمكائد والتعجيل بخطبة كاثرينا.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Lucentio" role="The Disguised Lover" icon={BookOpen} color="amber" details={
                                                 <>
                                                     <p><strong>Background:</strong> A young student from Pisa who falls in love with Bianca at first sight.</p>
                                                     <p><strong>The Scheme:</strong> He disguises himself as a language tutor named "Cambio" to court Bianca in secret. He eventually casts off his disguise and elopes with her.</p>
+                                                    <Ar>لوسينتيو: الشاب الرومانسي الذي يقع في غرام بيانكا السطحي من النظرة الأولى. يمثل الحب الرومانسي الساذج المعتمد على التنكر والخداع متناقضاً بقوة مع الزواج العملي الفج لبتروكيو وكاثرينا.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Hortensio" role="The Rival Suitor" icon={HeartHandshake} color="amber" details={
                                                 <>
                                                     <p><strong>Background:</strong> An old friend of Petruchio and an admirer of Bianca.</p>
                                                     <p><strong>The Pivot:</strong> He disguises himself as a music teacher to sneak poems to Bianca. After seeing her choose Lucentio, he gives up and hastily marries a wealthy widow instead.</p>
+                                                    <Ar>هورتينسيو: أحد خُطاب بيانكا الذي يتنكر كمعلم موسيقى. يستسلم بسرعة عندما تفضّل بيانكا منافسه عليه، ويتزوج من أرملة ثرية براغماتية أثبتت تمرداً مشابهاً لتصرفات بيانكا غير المطيعة في النهاية.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Tranio" role="The Loyal Servant" icon={Users} color="amber" details={
                                                 <>
                                                     <p><strong>Background:</strong> Lucentio's clever servant.</p>
                                                     <p><strong>The Stand-In:</strong> He agrees to switch places with Lucentio, dressing as his master to negotiate with Baptista. He places a winning financial bid for Bianca and tricks a merchant into posing as Lucentio's father to seal the deal.</p>
+                                                    <Ar>ترانيو: الخادم الماكر والذكي المخلص للوسينتيو. يتقمص شخصية سيده ببراعة تامة للتفاوض على المهر والتلاعب بالأب، مبرزاً قدرة الخدام (الطبقة البسيطة) على تجاوز أسيادهم في الدهاء والخداع اللفظي، ومسلطاً الضوء على ثيمة الملابس والمظاهر التي تخدع الناس.</Ar>
                                                 </>
                                             } />
                                         </div>
@@ -1819,6 +1979,9 @@
                                                 <p>At the heart of the play is the power struggle between Kate and Petruchio. Petruchio uses extreme psychological manipulation to break her resistance, treating marriage as a space where the husband must have absolute authority.</p>
                                                 <p>Kate transforms from an independent woman resisting social expectations into a subservient wife. This transformation raises deep questions about whether she is truly "tamed" or simply adapting to survive his games by blurring the line between appearance and reality.</p>
                                             </div>
+                                            <Ar title="السلطة والسيطرة داخل مؤسسة الزواج">
+                                                تركز الكوميديا شكسبير على الصراع العنيف للسلطة الذكورية وتأكيد الهيمنة الأبوية داخل الزواج. بتروكيو يستخدم الحرمان النفسي لكسر مقاومة كاثرينا القوية لفرض السيطرة المطلقة. لكن الجدل يظل قائماً: هل استسلمت كاثرينا حقيقة وأصبحت مطيعة لزوجها، أم أنها اكتشفت أن "لعبة الطاعة والتملق الزائف" هي الحل الوحيد للبقاء والتمتع بالسلام في هذا المجتمع الذكوري القاسي؟
+                                            </Ar>
                                         </Section>
                                         
                                         <Section title="Marriage as an Economic Institution" subtitle="Courtship as Commerce" icon={Briefcase} color="amber">
@@ -1826,6 +1989,9 @@
                                                 <p>Unlike other comedies, this play focuses heavily on the stark economic realities of Renaissance marriage. Inner emotional desire plays only a secondary role.</p>
                                                 <p>Courtship is a transaction negotiated between the future husband and the father. Baptista openly auctions Bianca off to the highest bidder. Lucentio wins her only by proving he is fabulously wealthy. Financial considerations completely outweigh affection.</p>
                                             </div>
+                                            <Ar title="الزواج كمؤسسة تجارية بحتة">
+                                                في هذه المسرحية (وعلى عكس الرومانسيات الحالمة كـ روميو وجولييت)، الزواج لا يدور حول الحب والمشاعر بل يعتمد حرفياً على الصفقات والمزادات التجارية العلنية والمهر المادي. الحب والرغبة أمور ثانوية تأتي بعد تأمين وضمان الميراث والتفاوض المادي القاسي بين الخطاب والآباء.
+                                            </Ar>
                                         </Section>
 
                                         <div className="grid md:grid-cols-2 gap-6 overflow-visible">
@@ -1844,6 +2010,9 @@
                                                 </ul>
                                             } />
                                         </div>
+                                        <Ar>
+                                            **الأدوار الجندرية والمجتمعية الصارمة:** يُطالب المجتمع الإنجليزي في عصر النهضة بأدوار محددة للرجال (القيادة والسيطرة) والنساء (التبعية والخضوع المطلق والتزام الصمت). كاثرينا تتعرض للإيذاء النفسي حتى تندمج وتتقبل هذا القالب النمطي المجتمعي وتثبت أن السعادة المجتمعية في تلك الفترة ترتبط فقط بالاستسلام للقواعد وعدم التمرد عليها، سواء من قِبل الخدم (كـ ترانيو) أو الزوجات.
+                                        </Ar>
                                     </div>
                                 )}
 
@@ -1865,6 +2034,7 @@
                                                     <p className="text-sm text-amber-800">Kate is frequently compared to animals (a shrew, a wild cat, a falcon). This symbolizes her commodification as a piece of "livestock" property, and represents Petruchio's desire to domesticate her true nature.</p>
                                                 </div>
                                             </div>
+                                            <Ar>الرموز الرئيسية: (1) ثياب الزفاف المضحكة لبتروكيو تثبت سلطته المطلقة وقدرته على كسر الأعراف لفرض إرادته. (2) تمزيق القبعة والثوب الفاخر الذي كانت تتمناه كاثرينا يدل على سيطرة الزوج وتحطيم إرادتها في التحكم حتى في مظهرها الشخصي. (3) التشبيه المتكرر بالحيوانات الأليفة المفترسة كالصقور يؤكد على نظرتهم للمرأة كممتلكات وحيوان يجب تطويعه وتدجينه وترويضه بالقوة لخدمة الرجل.</Ar>
                                         </Section>
 
                                         <div className="grid md:grid-cols-1 gap-6 overflow-visible">
@@ -1875,6 +2045,7 @@
                                                     <li><strong>Fathers and Children:</strong> Marriages do not merely concern the bride and groom, but their parents. Fathers (Baptista, Vincentio, the fake pedant) are heavily involved in transferring responsibility and negotiating the economic transactions of their children.</li>
                                                 </ul>
                                             } />
+                                            <Ar>التخفي والترويض: مسرحية التخفي والملابس تطرح تساؤلاً حول هل المظاهر والألقاب تصنع الناس حقاً؟ الإجابة لا لأن الشخصيات تعود لحقيقتها في النهاية. أما أسلوب "الترويض" المُستمد من مهارات ترويض الطيور الجارحة، فهو المحرك الأساسي للمسرحية والذي يثبت القسوة النفسية لتدجين شخصية المرأة المتمردة.</Ar>
                                         </div>
                                     </div>
                                 )}
@@ -1904,6 +2075,9 @@
                                                 <p><strong>Conclusion:</strong><br/>
                                                 In <em>The Taming of the Shrew</em>, meaning emerges not from dialogue alone but from the interaction between what characters imply and what audiences assume about language, genre, culture, and power.</p>
                                             </div>
+                                            <Ar title="التحليل اللغوي والمعرفي (مقال مارلين م. كوبر)">
+                                                تطرح الباحثة مارلين كوبر المشكلة الرئيسية في المسرحية: هل كاثرينا صادقة في خطابها النهائي حين تذل نفسها أمام زوجها؟ هنالك تفسيران متناقضان للباحثين: البعض يعتبر الترويض طريقاً لإخراج أفضل ما في الفتاة وبناء حياة سعيدة وهادئة، والبعض يراه قهراً ذكورياً وإخضاعاً دكتاتورياً يضطر كاثرينا للسخرية المبطنة والتلاعب لكي تتجنب الإيذاء. وتؤكد كوبر أن استخدامنا للقواعد اللغوية العميقة (مثل خرق قواعد الحديث لتوصيل معاني خفية كالسخرية أو التملق) وتقييمنا لنوع المسرحية (هل هي مجرد كوميديا سخيفة فارغة، أم دراما نفسية) هو ما يحدد تماماً كيفية فهمنا لهذا الخضوع المهين والنوايا الحقيقية وراء كلام الزوجين.
+                                            </Ar>
                                         </Section>
                                     </div>
                                 )}
@@ -1944,6 +2118,7 @@
                                                 <p className="text-slate-600 text-sm leading-relaxed">
                                                     Published and performed in 1887, <em>The Father</em> is a tragic drama in three acts. Exploring a Darwinian struggle of wills, the play highlights Strindberg's transition between naturalistic fiction and expressionism as it depicts a brutal psychological battle between a scientist and his wife over their daughter.
                                                 </p>
+                                                <Ar>مسرحية "الأب" لستريندبرغ: دراما تراجيدية تعكس نظرية داروين التطورية في صراع البقاء بين الأقوى والأضعف داخل الأسرة. تجسد المسرحية المعركة النفسية الوحشية والشرسة بين زوج عالم وزوجته الماكرة للسيطرة والاستحواذ الكامل على مصير ابنتهما، لتنتهي بانهيار تام وتدمير نفسي للزوج.</Ar>
                                             </div>
                                         </div>
 
@@ -1953,6 +2128,7 @@
                                                     <>
                                                         <p>The play opens in the Captain's home, establishing him as a proud military man and scientist. A central conflict quickly erupts between him and his wife, Laura, over their daughter Bertha's education. The Captain wants her to leave home to be educated in the city, while Laura insists she stay.</p>
                                                         <p>Laura begins planting subtle doubts in the Captain's mind regarding whether he is truly Bertha's biological father. Her manipulation shakes his confidence and sets the stage for psychological ruin.</p>
+                                                        <Ar>تبدأ المسرحية في منزل الكابتن، وهو ضابط عسكري فخور وعالم مُحترم. سرعان ما يشتعل نزاع حاد بينه وبين زوجته "لورا" حول كيفية تربية وتعليم ابنتهما "برثا". يرى الأب بحكم سلطته الذكورية أن من الأفضل إرسال ابنته للمدينة لتتلقى تعليماً علمانياً بعيداً عن الخرافات، بينما ترفض لورا ذلك بعناد شديد رغبةً في إبقائها تحت سيطرتها. للانتصار في هذه المعركة، تلجأ لورا إلى خطة شيطانية وماكرة؛ حيث تبدأ في التلميح وزرع شكوك قاتلة في رأس زوجها حول ما إذا كان هو الأب البيولوجي الحقيقي لـ "برثا"، وهو ما يزلزل كيانه ويهدد استقراره النفسي.</Ar>
                                                     </>
                                                 } />
 
@@ -1960,6 +2136,7 @@
                                                     <>
                                                         <p>Laura intensifies her campaign to undermine the Captain's authority. She intercepts his letters, isolating him and disrupting his scientific work, making him increasingly paranoid that the women in his house are conspiring against him.</p>
                                                         <p>When the village Doctor is introduced, Laura cleverly manipulates him into believing the Captain is mentally unstable. In a desperate confrontation, Laura uses her cunning to outmaneuver the Captain, pushing him closer to a mental breakdown by outright weaponizing the question of Bertha's paternity.</p>
+                                                        <Ar>تُصعّد لورا من حربها النفسية لتدمير سلطة الكابتن كلياً. تقوم بفرض حصار عليه داخل منزله؛ تعترض رسائله البريدية وتخفيها لتدمير أبحاثه ومكانته العلمية، وتجعله يشعر بأن كل النساء في المنزل يتآمرن ضده، مما يدفعه نحو "البارانويا" (جنون الارتياب). وعندما يصل طبيب القرية الجديد، تتلاعب به لورا ببراعة فائقة وتوهمه بأن الكابتن يعاني من اضطرابات عقلية. وفي مواجهة مباشرة ومرعبة بين الزوجين، تستخدم لورا سلاح "الشك في الأبوة" بكل قسوة، وتؤكد له أنه لا يملك دليلاً واحداً على نسب ابنته، مما يدفعه للانهيار وفقدان السيطرة على أعصابه.</Ar>
                                                     </>
                                                 } />
 
@@ -1967,6 +2144,7 @@
                                                     <>
                                                         <p>The Captain's mental state severely deteriorates under Laura's psychological manipulation. The entire household now views him as unfit. He makes a final, frantic attempt to assert his authority, but Laura has successfully convinced the Doctor and others that he must be restrained for his own safety.</p>
                                                         <p>In a tragic conclusion, the broken and powerless Captain is physically confined in a straitjacket with the help of his old nurse, Margaret. He loses his autonomy completely, symbolizing Laura's irreversible victory while the family remains in turmoil.</p>
+                                                        <Ar>في الفصل الأخير، تتدهور الحالة العقلية للكابتن تماماً تحت وطأة الشكوك والضغط النفسي العنيف. يقوم الكابتن في لحظة يأس وغضب بنوبات عنف، مما يُرسخ قناعة الجميع (بما فيهم الطبيب) بأنه قد جُن بالفعل وأصبح خطراً على من حوله. في نهاية تراجيدية ومؤلمة، يتم إقناع مربيته العجوز الطيبة "مارجريت" التي يثق بها الكابتن كأمه، بأن تُلبسه "سترة المجانين" بحجة تهدئته. يستسلم الكابتن المكسور والمُحطم للمربية، ليجد نفسه مقيداً ومسجوناً في بيته، فاقداً لإرادته وسلطته وابنته وعقله، لتنتصر لورا في صراع البقاء بشكل ساحق ولا رجعة فيه.</Ar>
                                                     </>
                                                 } />
                                             </div>
@@ -1997,36 +2175,42 @@
                                                 <>
                                                     <p><strong>Background:</strong> A proud military man, cavalry commander, and man of science. He serves as the patriarchal head of the household.</p>
                                                     <p><strong>The Struggle:</strong> He battles his household, which is dominated by women, and his own internal psychological crisis. His descent into paranoia and madness is driven by an existential dread about his authority, identity, and his place as a father.</p>
+                                                    <Ar>الكابتن (أدولف): ضابط وباحث علمي. يمثل العقل والسلطة الذكورية. يعاني من أزمة هوية وجودية وصراع نفسي مدمر عندما يتم تشكيكه في حقيقة دوره كـ"أب". تتغلب عليه المؤامرات النسائية التي تحيط به ليدخل في حالة بارانويا (جنون ارتياب) تقضي على مكانته.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Laura" role="The Master Manipulator" icon={BrainCircuit} color="slate" details={
                                                 <>
                                                     <p><strong>Background:</strong> The Captain's wife and the Pastor's sister. She harbors a deep-seated disdain for her role as his wife, though she fiercely accepts her maternal connection to their daughter.</p>
                                                     <p><strong>The Strategy:</strong> She is a cold, calculated, and formidable opponent. She orchestrates a campaign to dismantle her husband's authority by forging letters, intercepting mail, and weaponizing the uncertainty of Bertha's paternity to drive him insane.</p>
+                                                    <Ar>لورا: الزوجة الخبيثة والمُتلاعبة النفسية. تكره سيطرة زوجها وتسعى لتحطيمها بكافة الطرق غير الأخلاقية. تتميز بالبرود والذكاء الخبيث؛ فهي تستخدم الشائعات والتشكيك والمكائد لعزله اجتماعياً وعقلياً للاستئثار التام بمستقبل ابنتهما.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Bertha" role="The Contested Daughter" icon={Sparkles} color="slate" details={
                                                 <>
                                                     <p><strong>Background:</strong> The Captain and Laura's daughter, who becomes the focal point of their intense parental conflict.</p>
                                                     <p><strong>The Shift:</strong> Initially aligning with her father's wish for her to be educated away from home, she is ultimately swayed by her mother's influence. Her rejection of her father is the final catalyst that breaks his mind.</p>
+                                                    <Ar>برثا: الابنة ومحور الصراع. تقف بين إرادة الأب في تنويرها علمياً وإرادة الأم في إخضاعها. انضمامها في النهاية لجانب والدتها هو القشة التي قصمت ظهر الكابتن وتسببت في انهياره العقلي الأخير.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Margaret" role="The Old Nurse" icon={Home} color="slate" details={
                                                 <>
                                                     <p><strong>Background:</strong> The Captain's old nurse.</p>
                                                     <p><strong>The Surrogate:</strong> She acts as a nurturing, surrogate mother figure, offering comfort during his tragic decline. Heartbreakingly, she provides reassurance to him even as she aids in applying the straitjacket to confine him.</p>
+                                                    <Ar>مارجريت: المرضعة العجوز والطيبة التي يكن لها الكابتن احتراماً وحباً كبيرين كأم بديلة. ومن سخرية القدر وإمعاناً في القهر النفسي، تستغلها لورا لإلباس الكابتن "سترة المجانين"، حيث يستسلم لها لأنه لا يزال يعتبرها مصدر أمانه، ليجد نفسه مقيداً ومسجوناً.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="Dr. Östermark" role="The Unwitting Accomplice" icon={Crosshair} color="slate" details={
                                                 <>
                                                     <p><strong>Background:</strong> The village doctor brought into the household's affairs.</p>
                                                     <p><strong>The Action:</strong> Alerted by Laura about the Captain's alleged insanity, he is completely manipulated into believing the Captain's mental decline is real. His decisive action to bring the straitjacket marks the ultimate indignity for the Captain.</p>
+                                                    <Ar>الدكتور أوسترمارك: الطبيب الذي ينخدع تماماً بمؤامرات وتمثيل لورا. ورغم أنه شخصية علمية، إلا أنه يشارك بغير قصد في تدمير البطل وإصدار الحكم الخاطئ بضرورة تقييده وحجره بتهمة الجنون بدلاً من حمايته.</Ar>
                                                 </>
                                             } />
                                             <CharacterCard name="The Pastor" role="The Observer" icon={EyeOff} color="slate" details={
                                                 <>
                                                     <p><strong>Background:</strong> Laura's brother, drawn into the household to mediate.</p>
                                                     <p><strong>The Insight:</strong> Initially sympathetic to men in paternity disputes, his perspective shifts as he discerns Laura's true, malicious motives. He recognizes her scheme and stands at odds with her, though she brazenly challenges him to accuse her outright.</p>
+                                                    <Ar>القسيس: شقيق لورا الذي يدرك مدى خبث ومكائد أخته وأهدافها الشريرة، لكن لورا تتحداه بجرأة لأنها تعلم أن لا أحد يمتلك أدلة قاطعة لإدانتها.</Ar>
                                                 </>
                                             } />
                                         </div>
@@ -2041,6 +2225,9 @@
                                                 <p>The play heavily emphasizes the psychological struggles of the Captain, focusing closely on his descent into paranoia and madness.</p>
                                                 <p>Laura's manipulation distorts his perception of reality, creating a subjective experience where truth and illusion blur seamlessly together. The external, physical conflict over Bertha's upbringing perfectly mirrors his internal crisis, highlighting the fragmented nature of his psyche.</p>
                                             </div>
+                                            <Ar title="التخبط الداخلي والانهيار نحو البارانويا">
+                                                يركز ستريندبرغ بشكل مرعب على التطور البطيء للانهيار النفسي؛ فمن خلال تلاعب لورا القوي وتشويهها المعتمد للحقائق، يفقد الكابتن قدرته على التمييز بين الوهم والواقع ويسقط في هاوية "جنون الارتياب" وفقدان الثقة المريعة في كل شيء يحيط به ليصبح أسيراً للشكوك والأوهام.
+                                            </Ar>
                                         </Section>
 
                                         <div className="grid md:grid-cols-2 gap-6 overflow-visible">
@@ -2058,12 +2245,19 @@
                                                 </ul>
                                             } />
                                         </div>
+                                        <Ar>
+                                            **الاغتراب والعزلة:** تستخدم لورا سلطتها لحصار الأب اجتماعياً ونفسياً داخل بيته ليعيش وحيداً ومنعزلاً تماماً بلا أي سند أو صديق ليدافع عنه.<br/><br/>
+                                            **الحتمية التراجيدية:** المسرحية ذات طابع جبري ومظلم للغاية؛ الصراع هنا يشبه القضاء المحتوم حيث تتآمر كل الظروف والشخصيات لدفع البطل نحو حافة الجنون والموت بلا أي فرصة للنجاة.
+                                        </Ar>
 
                                         <Section title="Existential Angst" subtitle="The Crisis of Paternity" icon={Zap} color="slate">
                                             <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 overflow-visible text-sm text-slate-700 space-y-4">
                                                 <p>The play grapples heavily with existential questions of identity, authority, and purpose. The Captain's crisis of paternity is not just about whether he fathered Bertha, but about his fundamental place in the family and the world.</p>
                                                 <p>The total uncertainty of truth aligns perfectly with Expressionism's exploration of human insecurity in a chaotic, incomprehensible universe.</p>
                                             </div>
+                                            <Ar title="القلق الوجودي وأزمة الأبوة">
+                                                الأزمة ليست مجرد شك بيولوجي في بنوّة برثا، بل هي أزمة أعمق تهدم أساس وهوية الكابتن كإنسان. إذا لم تكن الفتاة ابنته، فما هو سبب كفاحه أو عمله؟ إنها شكوك تمحو الغاية من وجوده ذاته، وتجعله وجهاً لوجه أمام فراغ كوني مخيف، وهو سمة أساسية في المسرح التعبيري الذي يظهر ضآلة وانعدام أمان الإنسان أمام الشكوك المهلكة.
+                                            </Ar>
                                         </Section>
                                     </div>
                                 )}
@@ -2082,6 +2276,10 @@
                                                     <p className="text-sm text-slate-800">Laura's act of intercepting the Captain's mail symbolizes her absolute control over reality and information. It physically isolates the Captain from his professional life and the outside world, creating the suffocating environment needed to drive him mad.</p>
                                                 </div>
                                             </div>
+                                            <Ar title="رموز الانكسار والحصار">
+                                                **سترة المجانين:** تمثل سلب الإرادة والحرية الكاملة والإهانة الكبرى، وهي تتويج لانتصار الزوجة الوحشي وسحق كرامة الكابتن واستحواذها على سلطته.<br/>
+                                                **الرسائل المصادرة:** ترمز لقدرة الزوجة على التحكم وتشويه الحقيقة وتطويق وحصار الكابتن لقطع كل السبل التي قد تربطه بالعالم الخارجي وعمله وأصدقائه لحماية نفسه.
+                                            </Ar>
                                         </Section>
                                     </div>
                                 )}
@@ -2105,6 +2303,9 @@
                                                 <p><strong>Power Imbalances:</strong><br/>
                                                 The battle symbolizes broader societal struggles, touching on the oppressive structures of patriarchy and gender expectations. Laura's dominance and the Captain's collapse illustrate the destructive, inescapable potential of these power imbalances.</p>
                                             </div>
+                                            <Ar title="تحليل التطرف النفسي وصراعات القوة">
+                                                تمثل هذه المسرحية مزيجاً وانتقالاً بين الواقعية الطبيعية البحتة والمسرح التعبيري الذي يضخم المشاعر الإنسانية القاتمة كاليأس واليأس العنيف. اعتمد ستريندبرغ على نظرية "النشوء والارتقاء" الداروينية وطبقها داخل مؤسسة الزواج، ليظهر أن الحياة والعلاقات الإنسانية هي معركة بقاء واستنزاف للإرادة؛ فالأقوى والأكثر خبثاً سيفترس الطرف الأضعف ويقضي عليه لتمرير چيناته وفرض سيطرته، مما يجعلها قصة قاسية جداً عن اختلال موازين القوى المجتمعية والسقوط النفسي المُروع.
+                                            </Ar>
                                         </Section>
                                     </div>
                                 )}
@@ -2143,6 +2344,9 @@
                                         <p className="text-slate-300 text-lg max-w-2xl font-medium leading-relaxed">
                                             A foundational framework for analyzing structural plot dynamics, cognitive stage presence, and the evolution of dramatic forms from communion to modern revolt.
                                         </p>
+                                    </div>
+                                    <div className="relative z-10 mt-6 pt-4 border-t border-slate-700/50">
+                                        <Ar>القسم النظري والقواعد الأساسية لفهم الأدب الدرامي الحديث وتطوره وانتقاله من الطابع الكلاسيكي القديم إلى مسرح التمرد، بالإضافة لفهم كيفية تشابك الحبكات المسرحية مع بعضها البعض (The Grammar of Moves).</Ar>
                                     </div>
                                 </div>
 
@@ -2190,6 +2394,11 @@
                                                 </div>
                                             </div>
 
+                                            <Ar>
+                                                <strong>1. قواعد التحركات (Move Grammar):</strong> لا تسير الحبكة المسرحية في خط مستقيم ناعم، بل كدائرة مستمرة: تبدأ بـ (مشكلة) تتطلب حلاً، ولا يتم الحل إلا بوجود (عامل مساعد/محفز)، ليؤدي ذلك إلى (نتيجة/حل) تخلق بدورها مشكلة جديدة لتبدأ الدورة من جديد.
+                                                <br/><strong>مثال تطبيقي:</strong> مشكلة إياجو هي شعوره بالظلم لعدم ترقيته وحبه المرفوض. المحفز كان "منديل ديدمونة" وسذاجة عطيل. النتيجة كانت تدمير عطيل وقتل ديدمونة، وهذا الحل خلق أزمة جديدة (اكتشاف جرائمه) لتبدأ الدورة مجدداً.
+                                            </Ar>
+
                                             <div className="grid md:grid-cols-2 gap-6 mt-6">
                                                 <div className="border border-slate-100 bg-slate-50/50 p-5 rounded-xl">
                                                     <strong className="text-slate-900 block mb-2 text-lg">Case Study: Iago's Plot</strong>
@@ -2210,6 +2419,9 @@
                                                     </ul>
                                                 </div>
                                             </div>
+                                            <Ar>
+                                                <strong>التحليل الإدراكي/المعرفي (Cognitive Analysis):</strong> التركيز على ما يحدث فيزيائياً ونفسياً على خشبة المسرح وكيف يدرك الجمهور والشخصيات هذا الواقع. مثل استخدام الإضاءة، والظلام، والأهم: السيطرة الإدراكية كما فعل إياجو حين تحكم في عقل عطيل بالكامل، فصارت عيون وآذان عطيل ترى وتسمع فقط ما يريده إياجو لها أن تراه، ملغياً إدراكه الخاص.
+                                            </Ar>
                                         </div>
                                     </div>
 
@@ -2253,13 +2465,19 @@
                                                 </div>
                                                 <div className="grid grid-cols-2 text-sm border-b border-slate-100 hover:bg-slate-50 transition-colors">
                                                     <div className="p-5 border-r border-slate-100">
-                                                        <strong className="block text-slate-800 mb-1">Resolution:</strong> Offers structural or spiritual restoration (e.g., Denmark is restored after Hamlet's death; a plague is purged via Oedipus' exile).
+                                                        <strong className="block text-slate-800 mb-1">Resolution:</strong> Offers structural or spiritual restoration (e.g., Denmark is restored after Hamlet's death).
                                                     </div>
                                                     <div className="p-5">
-                                                        <strong className="block text-slate-800 mb-1">Resolution:</strong> No restoration or comfort. Bitter protest remains unresolved, leaving characters in empty heavens and staring into a vast abyss.
+                                                        <strong className="block text-slate-800 mb-1">Resolution:</strong> No restoration or comfort. Bitter protest remains unresolved.
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <Ar>
+                                                <strong>مسرح التمرد (الحديث) مقابل مسرح الشراكة الروحية (القديم):</strong><br/>
+                                                - <strong>المسرح القديم:</strong> (مثل مسرح شكسبير وسوفوكليس) يعتمد على الإيمان، وجمهور يؤمن بالخرافات والنظام الكوني، وينتهي بتقديم "حل أو راحة" للمشاهد بعد المأساة.<br/>
+                                                - <strong>مسرح التمرد الحديث:</strong> (مثل إبسن وستريندبرغ) يبدأ من نقطة النهاية والانهيار للمسرح القديم. هو مسرح الشك المطلق، والتمرد على القيم والمؤسسات البالية (دين، عائلة، مجتمع)، ولا يقدم نهايات مريحة أو حلولاً تطهيرية للجمهور.
+                                            </Ar>
 
                                             <div className="bg-slate-50 border-l-4 border-indigo-500 rounded-r-xl p-5 my-6 italic text-slate-600 text-sm font-serif">
                                                 "'Tis all in pieces, all coherence gone; All just supply, and all relation."
@@ -2292,6 +2510,9 @@
                                                         Rebellion against political structures, social class institutions, and hypocritical conventions (e.g., Ibsen's <em>The Wild Duck</em>).
                                                     </div>
                                                 </div>
+                                                <Ar>
+                                                    <strong>أنواع التمرد في المسرح الحديث:</strong> 1- تمرد وجودي (ضد عبثية الحياة). 2- تمرد خلاصي مسياني (تمرد الإنسان ليضع نفسه كإله/منقذ لنفسه). 3- تمرد اجتماعي (كما في مسرحية البطة البرية، ضد النفاق وهياكل المجتمع الزائفة).
+                                                </Ar>
                                             </div>
                                         </div>
                                     </div>
@@ -2385,11 +2606,21 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <Ar>
+                                            <strong>السمات الثمانية للمسرح الحديث:</strong><br/>
+                                            1. <strong>الفردية (Individuality):</strong> التركيز على الفرد ومشكلاته كمركز للكون (فإذا مرض الفرد، مرض المجتمع).<br/>
+                                            2. <strong>الانعزال (Isolation):</strong> الانفصال المادي عن المحيط، والذي زاد بسبب التكنولوجيا الحديثة.<br/>
+                                            3. <strong>الشعور بالوحدة (Loneliness):</strong> شعور داخلي قاتم بالغربة حتى وسط الزحام.<br/>
+                                            4. <strong>اليأس المؤدي للانتحار (Despair):</strong> الضغط النفسي المتراكم من العزلة يدفع أبطال الدراما الحديثة لإنهاء حياتهم.<br/>
+                                            5. <strong>انعدام التواصل (Lack of Communication):</strong> العجز التام عن التعبير عن المشاعر الحقيقية أو مشاركة الأسرار.<br/>
+                                            6. <strong>الدين (Religion):</strong> تواجد شخصيات دينية كرجال دين (إما بشكل إيجابي أو سلبي منافق).<br/>
+                                            7. <strong>الاهتمام بالماضي (Past):</strong> استخدام التاريخ لفهم الحاضر والتنبؤ بالمستقبل.<br/>
+                                            8. <strong>التحليل النفسي (Psychoanalysis):</strong> التركيز المعمق على عقد الأبطال النفسية واحتياجهم لعلاج جذري بدلاً من الحلول السطحية.
+                                        </Ar>
                                     </div>
                                 </div>
                             </div>
                         )}
-
                     </main>
                 </div>
             );
